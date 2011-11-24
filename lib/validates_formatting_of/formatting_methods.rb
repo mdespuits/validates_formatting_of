@@ -1,8 +1,8 @@
 module ValidatesFormattingOf
-  module FormattingMethods
+  class FormattingMethods
 
     def email
-      /^[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i
+      /[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i
     end
 
     def url
