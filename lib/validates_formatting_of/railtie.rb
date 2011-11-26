@@ -1,3 +1,4 @@
+# Extend ActiveRecord's methods
 module ValidatesFormattingOf
   class Railtie < Rails::Railtie
     initializer 'validates_formatting_of.model_additions' do
