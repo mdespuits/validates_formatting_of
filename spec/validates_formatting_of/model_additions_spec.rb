@@ -6,11 +6,11 @@ class SuperModel::Base
 end
 
 class Email < SuperModel::Base
-  validates_formatting_of :email, by: :email
+  validates_formatting_of :email, using: :email
 end
 
 class Webpage < SuperModel::Base
-  validates_formatting_of :url, by: :url
+  validates_formatting_of :url, using: :url
 end
 
 
