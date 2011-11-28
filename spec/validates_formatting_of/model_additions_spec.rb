@@ -1,10 +1,5 @@
 require 'spec_helper'
 
-class SuperModel::Base
-  include ActiveModel::Validations::Callbacks
-  extend ValidatesFormattingOf::ModelAdditions
-end
-
 class Email < SuperModel::Base
   validates_formatting_of :email, using: :email
 end
