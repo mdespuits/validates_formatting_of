@@ -13,7 +13,7 @@ module ValidatesFormattingOf
 
       regex_for_validation = opts[:regex] || validate_with(opts[:using])
 
-      validates_format_of attribute, with: regex_for_validation, message: opts[:message]
+      validates_format_of attribute, :with => regex_for_validation, :message => opts[:message]
     end
 
     # Actually retrieve the regex to check against
