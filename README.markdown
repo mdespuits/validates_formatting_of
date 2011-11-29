@@ -1,10 +1,10 @@
 # validates_formatting_of [![Build Status](https://secure.travis-ci.org/mattdbridges/validates_formatting_of.png)](http://travis-ci.org/mattdbridges/validates_formatting_of)
 
-The *validates_formatting_of" gem addess several convenient methods to validating things such as emails, urls, and phones in a Rails application.
+The `validates_formatting_of` gem addess several convenient methods to validating things such as emails, urls, and phones in a Rails application.
 
 # Installation
 
-To install *validates_formatting_of*, add the following to your `Gemfile`:
+To install `validates_formatting_of`, add the following to your `Gemfile`:
 
     gem 'validates_formatting_of'
 
@@ -76,7 +76,7 @@ This call will ensure that the user-provided email is a valid email. This way, y
     
 # Customizable
 
-If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the :regex option. For example,
+If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the `:regex` option. For example,
 
 
     class Person < ActiveRecord::Base
