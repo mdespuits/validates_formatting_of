@@ -11,7 +11,9 @@ module ValidatesFormattingOf
       #   end
       # end
 
-      validates_format_of attribute, with: validate_with(opts[:using]), message: opts[:message]
+      regex_for_validation = opts[:regex] || validate_with(opts[:using])
+
+      validates_format_of attribute, with: regex_for_validation, message: opts[:message]
     end
 
     # Actually retrieve the regex to check against
