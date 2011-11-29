@@ -1,4 +1,4 @@
-# validates_formatting_of
+# validates_formatting_of [![Build Status](https://secure.travis-ci.org/mattdbridges/validates_formatting_of.png)](http://travis-ci.org/mattdbridges/validates_formatting_of)
 
 The *validates_formatting_of" gem addess several convenient methods to validating things such as emails, urls, and phones in a Rails application.
 
@@ -26,11 +26,60 @@ This call will ensure that the user-provided email is a valid email. This way, y
 
 `validates_formatting_of` has support for the following validations:
 
-* Email
-* URL
-* Alpha-only
-* Alphanumeric
-* Credit Card (Visa, Mastercard, Discver, and American Express)
-* US Zipcodes
-* US Phone numbers
-* IP Address
+### Email
+
+    class User < ActiveRecord::Base
+      validates_formatting_of :email, :using => :email
+    end
+
+### URL
+
+    class Sites < ActiveRecord::Base
+      validates_formatting_of :website, :using => :url
+    end
+
+### Alpha
+
+    class Name < ActiveRecord::Base
+      validates_formatting_of :first_name, :using => :alpha
+    end
+
+### Alphanumeric
+
+    class Sites < ActiveRecord::Base
+      validates_formatting_of :text, :using => :alphanum
+    end
+
+### Credit Card (Visa, Mastercard, Discver, and American Express)
+
+    class Purchases < ActiveRecord::Base
+      validates_formatting_of :cc, :using => :credit_card
+    end
+    
+### US Zipcodes
+
+    class Location < ActiveRecord::Base
+      validates_formatting_of :zipcode, :using => :us_zip
+    end
+    
+### US Phone numbers
+
+    class Phones < ActiveRecord::Base
+      validates_formatting_of :phone, :using => :us_phone
+    end
+    
+### IP Address
+
+    class Location < ActiveRecord::Base
+      validates_formatting_of :website, :using => :url
+    end
+    
+# Customizable
+
+If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the :regex option. For example,
+
+
+    class Person < ActiveRecord::Base
+      validates_formatting_of :first_name, :regex => /[A-Z]/i
+    end
+    
