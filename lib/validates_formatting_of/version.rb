@@ -1,3 +1,3 @@
 module ValidatesFormattingOf
-  VERSION = "0.0.5.alpha"
+  VERSION = "0.1"
 end
