@@ -22,6 +22,13 @@ Using validates_formatting_of is as simple as using Rails' built-in validation m
 
 This call will ensure that the user-provided email is a valid email. This way, you will not need to find or write your own regex to validate. All of that logic is contained within `validates_formatting_of`
 
+# Rails validation options still available
+
+You can still add the following options when using `validates_formatting_of`:
+
+* `:allow_nil`
+* `:allow_blank`
+
 # Available Formatting Validations
 
 `validates_formatting_of` has support for the following validations:
@@ -78,6 +85,7 @@ This call will ensure that the user-provided email is a valid email. This way, y
     class User < ActiveRecord::Base
       validates_formatting_of :ssn, :using => :ssn
     end 
+
 # Customizable
 
 If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the `:regex` option. For example,
