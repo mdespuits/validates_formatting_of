@@ -28,6 +28,7 @@ You can still add the following options when using `validates_formatting_of`:
 
 * `:allow_nil`
 * `:allow_blank`
+* `:message` for custom validation messages
 
 # Available Formatting Validations
 
