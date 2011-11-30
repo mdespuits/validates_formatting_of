@@ -82,4 +82,8 @@ If, for any reason, you want to use your own regex instead of Rail's built-in me
     class Person < ActiveRecord::Base
       validates_formatting_of :first_name, :regex => /[A-Z]/i
     end
+
+# Development and Contribution
+
+It is very easy to contribute to this gem. Full documentation to do so will be added in the near future.
     
