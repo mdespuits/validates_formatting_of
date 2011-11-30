@@ -21,7 +21,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class Webpage < SuperModel::Base
       validates_formatting_of :url, :using => :url
     end
-    it "validates that the email provided is valid" do
+    it "validates that the url provided is valid" do
       Webpage.new(:url => 'http://something.com').should be_valid
       Webpage.new(:url => "something else").should_not be_valid
     end
@@ -32,7 +32,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class USZip < SuperModel::Base
       validates_formatting_of :zipcode, :using => :us_zip
     end
-    it "validates that the email provided is valid" do
+    it "validates that the zipcode provided is valid" do
       USZip.new(:zipcode => '92348').should be_valid
       USZip.new(:zipcode => '23434-2348').should be_valid
       USZip.new(:zipcode => '234').should_not be_valid
@@ -46,7 +46,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class Alpha < SuperModel::Base
       validates_formatting_of :letters, :using => :alpha
     end
-    it "validates that the email provided is valid" do
+    it "validates that the letters provided is valid" do
       Alpha.new(:letters => 'abscdsofjsdpfahdsofkajlsdfaspdhjfads').should be_valid
       Alpha.new(:letters => 'asdfalskdfjhas-dlfhasdksdfaldhfadsfasdfa').should be_valid
       Alpha.new(:letters => 'adsufasodfksadjfskjdfha98').should_not be_valid
@@ -59,7 +59,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class Alphanum < SuperModel::Base
       validates_formatting_of :letters_and_numbers, :using => :alphanum
     end
-    it "validates that the email provided is valid" do
+    it "validates that the letters provided is valid" do
       Alphanum.new(:letters_and_numbers => 'numbersandlettersarevalid1234567890').should be_valid
       Alphanum.new(:letters_and_numbers => 'justletters').should be_valid
       Alphanum.new(:letters_and_numbers => 'letters and numbers 123 with spaces').should be_valid
@@ -72,7 +72,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class USPhone < SuperModel::Base
       validates_formatting_of :phone_number, :using => :us_phone
     end
-    it "validates that the email provided is valid" do
+    it "validates that the phone number provided is valid" do
       USPhone.new(:phone_number => '(234) 234-3456').should be_valid
       USPhone.new(:phone_number => '123 123 3456').should be_valid
       USPhone.new(:phone_number => '(223)123-2347').should be_valid
@@ -81,12 +81,12 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
 
   end
-  describe "us_phone" do
+  describe "ip_address" do
     
     class IPAddress < SuperModel::Base
       validates_formatting_of :ip, :using => :ip_address
     end
-    it "validates that the email provided is valid" do
+    it "validates that the IP address provided is valid" do
       IPAddress.new(:ip => '10.10.10').should_not be_valid
       IPAddress.new(:ip => '999.10.10.20').should_not be_valid
       IPAddress.new(:ip => '2222.22.22.22').should_not be_valid
