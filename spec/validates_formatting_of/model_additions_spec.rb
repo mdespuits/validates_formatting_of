@@ -124,4 +124,18 @@ describe ValidatesFormattingOf::ModelAdditions do
       AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
     end
   end
+
+  describe "nil and blank values" do
+    class People < SuperModel::Base
+      validates_formatting_of :last_name, :using => :alpha
+    end
+    it "are allowed" do
+      p = People.new(:last_name => "something")
+      p.should be_valid
+      p.save!
+      p.last_name = nil
+      puts p.inspect
+      p.should_not be_valid
+    end
+  end
 end
