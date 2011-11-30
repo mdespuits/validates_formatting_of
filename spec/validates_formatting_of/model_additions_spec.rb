@@ -124,6 +124,20 @@ describe ValidatesFormattingOf::ModelAdditions do
       AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
     end
   end
+  describe "custom messages" do
+
+    class Message < SuperModel::Base
+      validates_formatting_of :first_name, :using => :alpha, :message => "is not a valid first name"
+    end
+
+    it "are allowed and can be used in displaying error messages" do
+      message = Message.new(:first_name => "invalid-first-name-123")
+      message.should_not be_valid
+      message.errors.keys.class.should eq Array
+      message.errors.full_messages.first.should =~ /is not a valid first name/
+    end
+
+  end
   # Currently, SuperModel's validations do not detect allow_blank or allow_nil
   # This functionality has been tested separately in an empty Rails app with perfect
   # results.
