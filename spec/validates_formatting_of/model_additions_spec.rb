@@ -96,21 +96,6 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
 
   end
-  describe "us_phone" do
-    
-    class IPAddress < SuperModel::Base
-      validates_formatting_of :ip, :using => :ip_address
-    end
-    it "validates that the email provided is valid" do
-      IPAddress.new(:ip => '10.10.10').should_not be_valid
-      IPAddress.new(:ip => '999.10.10.20').should_not be_valid
-      IPAddress.new(:ip => '2222.22.22.22').should_not be_valid
-      IPAddress.new(:ip => '22.2222.22.2').should_not be_valid
-      IPAddress.new(:ip => '127.0.0.1').should be_valid
-      IPAddress.new(:ip => '132.254.111.10').should be_valid
-    end
-
-  end  
   # For clarification, NONE of the following numbers are real credit card numbers.
   # They only match the pattern. These were randomly made for testing.
   describe "credit_card" do
@@ -125,5 +110,18 @@ describe ValidatesFormattingOf::ModelAdditions do
       Client.new(:cc => '1233444444444444').should_not be_valid # fake
     end
 
+  end
+  describe "ssn" do
+    class AnotherPerson < SuperModel::Base
+      validates_formatting_of :ssn, :using => :ssn
+    end
+    it "validates that the social security number provided is valid" do
+      AnotherPerson.new(:ssn => "145.47.0191").should be_valid
+      AnotherPerson.new(:ssn => "223-43-2343").should be_valid
+      AnotherPerson.new(:ssn => "999.55.8888").should be_valid
+      AnotherPerson.new(:ssn => "28934").should_not be_valid
+      AnotherPerson.new(:ssn => "228934828934934").should_not be_valid
+      AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
+    end
   end
 end

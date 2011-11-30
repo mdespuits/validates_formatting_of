@@ -40,5 +40,10 @@ module ValidatesFormattingOf
       /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/
     end
 
+    # Social Security Number pattern
+    def ssn
+      /^\d{3}([-.]){1}\d{2}([-.]){1}\d{4}$/
+    end
+
   end
 end
