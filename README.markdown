@@ -50,7 +50,7 @@ This call will ensure that the user-provided email is a valid email. This way, y
       validates_formatting_of :text, :using => :alphanum
     end
 
-### Credit Card (Visa, Mastercard, Discver, and American Express)
+### Credit Card (Visa, Mastercard, Discover, and American Express)
 
     class Purchases < ActiveRecord::Base
       validates_formatting_of :cc, :using => :credit_card
