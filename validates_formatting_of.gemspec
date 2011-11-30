@@ -4,8 +4,8 @@ require File.expand_path('../lib/validates_formatting_of/version', __FILE__)
 Gem::Specification.new do |gem|
   gem.authors       = ["Matt Bridges"]
   gem.email         = ["mbridges.91@gmail.com"]
-  gem.description   = %q{Common Rails validations for different types of data}
-  gem.summary       = %q{Adds common data validations to save development time. (i.e. phone and url)}
+  gem.description   = %q{Common Rails validations wrapped in a gem.}
+  gem.summary       = %q{Adds several convenient methods to validate things such as emails, urls, and phone numbers in a Rails application}
   gem.homepage      = "https://github.com/mattdbridges/validates_formatting_of"
 
   gem.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
@@ -15,7 +15,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ValidatesFormattingOf::VERSION
 
-  gem.add_development_dependency "rake"
-  gem.add_development_dependency "rspec"
-  gem.add_development_dependency "supermodel"
+  gem.add_dependency "rails", ">= 3.0.0"
+
+  gem.add_development_dependency "rake", "0.9.2"
+  gem.add_development_dependency "rspec", "2.7.0"
+  gem.add_development_dependency "supermodel", "0.1.6"
 end
