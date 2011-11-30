@@ -13,13 +13,17 @@ module ValidatesFormattingOf
 
       regex_for_validation = opts[:regex] || validate_with(opts[:using])
 
+      # Add :allow_nil and :allow_blank options. Both are false by default.
       allow_nil = opts[:allow_nil] || false
       allow_blank = opts[:allow_blank] || false
 
-      validates attribute,  :format => {  :with => regex_for_validation,
-                                          :message => opts[:message] },
-                            :allow_blank => false
+      validates attribute,  :format => {  :with     => regex_for_validation,
+                                          :message  => opts[:message] },
+                            :allow_nil => allow_nil,
+                            :allow_blank => allow_blank
     end
+
+  private
 
     def validate_with(method)
       # Actually retrieve the regex to check against
