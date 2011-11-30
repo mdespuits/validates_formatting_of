@@ -73,7 +73,11 @@ This call will ensure that the user-provided email is a valid email. This way, y
     class Location < ActiveRecord::Base
       validates_formatting_of :website, :using => :url
     end
-    
+### Social Security Number
+
+    class User < ActiveRecord::Base
+      validates_formatting_of :ssn, :using => :ssn
+    end 
 # Customizable
 
 If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the `:regex` option. For example,
