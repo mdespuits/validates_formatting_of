@@ -1,26 +1,24 @@
 module ValidatesFormattingOf
   module ModelAdditions
-    def validates_formatting_of(attribute, opts = {})
 
-      # Here is where the input is formatted before it is validated.
-      # Not yet implemented.
-      # 
-      # unless opts[:preformat].nil?
-      #   before_validation do
-      #     # add formatting changes here
-      #   end
-      # end
+    # Using validates_formatting_of is as simple as using Rails' built-in 
+    # validation methods in models.
+    # 
+    # class User < ActiveRecord::Base
+    #   validates_formatting_of :email, :using => :email
+    # end
+    # 
+    # This call will ensure that the user-provided email is a valid email. This way, 
+    # you will not need to find or write your own regex to validate. All of that 
+    # logic is contained within `validates_formatting_of`
+    def validates_formatting_of(attribute, opts = {})
 
       regex_for_validation = opts[:regex] || validate_with(opts[:using])
 
       # Add :allow_nil and :allow_blank options. Both are false by default.
       allow_nil = opts[:allow_nil] || false
       allow_blank = opts[:allow_blank] || false
-
-      validation_message = ValidationMessages.message(attribute)
-      if opts[:message]
-        validation_message = opts[:message]
-      end
+      validation_message = opts[:message] || ValidationMessages.message(opts[:using])
 
       validates attribute,  :format => {  :with     =>  regex_for_validation,
                                           :message  =>  validation_message },
