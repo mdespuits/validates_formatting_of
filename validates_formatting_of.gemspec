@@ -15,9 +15,9 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ValidatesFormattingOf::VERSION
 
-  gem.add_dependency "rails", ">= 3.0.0"
+  gem.add_dependency "rails", "~> 3.0"
 
-  gem.add_development_dependency "rake", "0.9.2"
-  gem.add_development_dependency "rspec", "2.7.0"
-  gem.add_development_dependency "supermodel", "0.1.6"
+  gem.add_development_dependency "rake"
+  gem.add_development_dependency "rspec"
+  gem.add_development_dependency "supermodel"
 end
