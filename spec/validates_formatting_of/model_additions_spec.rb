@@ -140,15 +140,18 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
   describe "default error messages" do
 
-    class IPErrorMessage < SuperModel::Base
-      validates_formatting_of :ip, :using => :ip_address
+    class Problems < SuperModel::Base
+      validates_formatting_of :name, :using => :alpha
     end
 
     it "set a default error" do
-      custom_message = IPErrorMessage.new(:ip => "sdfsdfsd")
-      custom_message.should_not be_valid
-      puts custom_message.inspect
-      # custom_message.full_messages.first.should =~ /credit card/i
+      problems = Problems.new(:name => "sdfs12312dfsd")
+      problems.should_not be_valid
+      problems.errors.full_messages.first.should =~ /letters/i
+
+      email = Email.new(:email => "fake@email.address")
+      email.should_not be_valid
+      email.errors.full_messages.first.should =~ /email/i
     end
 
   end
