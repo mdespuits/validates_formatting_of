@@ -7,8 +7,9 @@ module ValidatesFormattingOf
     end
 
     # Taken from Ryan Bates' screencast on extracting gems. Works extremely well. Thanks Ryan!
+    # (slightly revised to work on MRI 1.8.7 and ree)
     def url
-      /^https?:\/\/([^\s:@]+:[^\s:@]*@)?[-[[:alnum:]]]+(\.[-[[:alnum:]]]+)+\.?(:\d{1,5})?([\/?]\S*)?$/iux
+      /^https?:\/\/([^\s:@]+:[^\s:@]*@)?[A-Za-z\d\-]+(\.[A-Za-z\d\-]+)+\.?(:\d{1,5})?([\/?]\S*)?$/iux
     end
 
     # No numbers of symbols. allows "-"

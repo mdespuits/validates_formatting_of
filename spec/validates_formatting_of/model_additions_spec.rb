@@ -23,6 +23,9 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
     it "validates that the url provided is valid" do
       Webpage.new(:url => 'http://something.com').should be_valid
+      Webpage.new(:url => 'http://something-else.com').should be_valid
+      Webpage.new(:url => 'http://sub.domains.something-else.com').should be_valid
+      Webpage.new(:url => 'http://username:password@something-else.com').should be_valid
       Webpage.new(:url => "something else").should_not be_valid
     end
 
