@@ -79,7 +79,7 @@ You can still add the following options when using `validates_formatting_of`:
 ### IP Address
 
     class Location < ActiveRecord::Base
-      validates_formatting_of :website, :using => :url
+      validates_formatting_of :website, :using => :ip_address
     end
 ### Social Security Number
 
