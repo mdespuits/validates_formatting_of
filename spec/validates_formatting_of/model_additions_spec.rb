@@ -138,6 +138,20 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
 
   end
+  describe "default error messages" do
+
+    class IPErrorMessage < SuperModel::Base
+      validates_formatting_of :ip, :using => :ip_address
+    end
+
+    it "set a default error" do
+      custom_message = IPErrorMessage.new(:ip => "sdfsdfsd")
+      custom_message.should_not be_valid
+      puts custom_message.inspect
+      # custom_message.full_messages.first.should =~ /credit card/i
+    end
+
+  end
   # Currently, SuperModel's validations do not detect allow_blank or allow_nil
   # This functionality has been tested separately in an empty Rails app with perfect
   # results.

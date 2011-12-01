@@ -17,8 +17,13 @@ module ValidatesFormattingOf
       allow_nil = opts[:allow_nil] || false
       allow_blank = opts[:allow_blank] || false
 
-      validates attribute,  :format => {  :with     => regex_for_validation,
-                                          :message  => opts[:message] },
+      validation_message = ValidationMessages.message(attribute)
+      if opts[:message]
+        validation_message = opts[:message]
+      end
+
+      validates attribute,  :format => {  :with     =>  regex_for_validation,
+                                          :message  =>  validation_message },
                             :allow_nil => allow_nil,
                             :allow_blank => allow_blank
     end
