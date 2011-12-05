@@ -13,7 +13,8 @@ module ValidatesFormattingOf
           :us_zip => "is not a valid zipcode",
           :us_phone => "is not a valid phone number",
           :ip_address => "is not a valid IP address",
-          :ssn => "is not a valid social security number"
+          :ssn => "is not a valid social security number",
+          :hex_color => "is not a valid hex color"
         }
       end
        
