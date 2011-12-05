@@ -127,6 +127,22 @@ describe ValidatesFormattingOf::ModelAdditions do
       AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
     end
   end
+  describe "hex_color" do
+    class Color < SuperModel::Base
+      validates_formatting_of :color, :using => :hex_color
+    end
+    it "validates that the social security number provided is valid" do
+      Color.new(:color => "efefef").should be_valid
+      Color.new(:color => "98de89").should be_valid
+      Color.new(:color => "000011").should be_valid
+      Color.new(:color => "132").should be_valid
+      Color.new(:color => "eef").should be_valid
+      Color.new(:color => "efefe").should_not be_valid
+      Color.new(:color => "zsdfsd").should_not be_valid
+      Color.new(:color => "p98hul;").should_not be_valid
+      Color.new(:color => "sdfsdfsf").should_not be_valid
+    end
+  end
   describe "custom messages" do
 
     class Message < SuperModel::Base

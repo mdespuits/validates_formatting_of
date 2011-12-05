@@ -86,6 +86,12 @@ You can still add the following options when using `validates_formatting_of`:
     class User < ActiveRecord::Base
       validates_formatting_of :ssn, :using => :ssn
     end 
+    
+### Hex Colors
+
+    class Color < ActiveRecord::Base
+      validates_formatting_of :color, :using => :hex_color
+    end
 
 # Customizable
 

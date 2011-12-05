@@ -46,5 +46,10 @@ module ValidatesFormattingOf
       /^\d{3}([-.]){1}\d{2}([-.]){1}\d{4}$/
     end
 
+    # Matches CSS colors either in three or six digit formats
+    def hex_color
+      /^([A-F0-9]{6}|[A-F0-9]{3})$/i
+    end
+
   end
 end
