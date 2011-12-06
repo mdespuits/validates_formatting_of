@@ -131,7 +131,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class Color < SuperModel::Base
       validates_formatting_of :color, :using => :hex_color
     end
-    it "validates that the social security number provided is valid" do
+    it "validates that the hex color value provided is valid" do
       Color.new(:color => "efefef").should be_valid
       Color.new(:color => "98de89").should be_valid
       Color.new(:color => "000011").should be_valid
