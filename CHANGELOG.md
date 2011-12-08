@@ -1,3 +1,12 @@
+## v0.3.5
+
+* Quick release to fix Ruby environment bugs introduced in v0.3.4.
+
+## v0.3.4
+
+* Introduced default error messages.
+* *Notice* This release did not work in all Ruby environments.
+
 ## v0.3.0 -- v0.3.1
 
 * `:allow_nil` and `:allow_blank` validation options added
