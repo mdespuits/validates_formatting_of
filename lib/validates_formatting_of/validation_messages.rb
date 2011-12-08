@@ -23,7 +23,7 @@ module ValidatesFormattingOf
     extend self
 
     def message(message)
-      Messages.hash[message.downcase.to_sym]
+      Messages.hash[message.to_s.downcase.to_sym]
     end
 
   end
