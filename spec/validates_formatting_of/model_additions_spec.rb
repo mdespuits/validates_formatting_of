@@ -143,6 +143,22 @@ describe ValidatesFormattingOf::ModelAdditions do
       Color.new(:color => "sdfsdfsf").should_not be_valid
     end
   end
+  describe "dollars" do
+    class Money < SuperModel::Base
+      validates_formatting_of :amount, :using => :dollars
+    end
+    it "validates that the dollars amount provided is valid" do
+      Money.new(:amount => "$100.00").should be_valid
+      Money.new(:amount => "100.00").should be_valid
+      Money.new(:amount => "12,234,343").should be_valid
+      Money.new(:amount => "$12.34").should be_valid
+      Money.new(:amount => "120,123,232.32").should be_valid
+      Money.new(:amount => "$$1111111100").should_not be_valid
+      Money.new(:amount => "100;00").should_not be_valid
+      Money.new(:amount => "238,3423,42..99").should_not be_valid
+      Money.new(:amount => "$-233").should_not be_valid
+    end
+  end
   describe "custom messages" do
 
     class Message < SuperModel::Base

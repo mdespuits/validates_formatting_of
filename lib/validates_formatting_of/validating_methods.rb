@@ -51,6 +51,10 @@ module ValidatesFormattingOf
     def hex_color
       /^([A-F0-9]{6}|[A-F0-9]{3})$/i
     end
+    
+    def dollars
+      /^\$?(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/
+    end
 
   end
 end
