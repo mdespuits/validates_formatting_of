@@ -1,4 +1,4 @@
-# validates_formatting_of [![Build Status](https://secure.travis-ci.org/mattdbridges/validates_formatting_of.png)](http://travis-ci.org/mattdbridges/validates_formatting_of)
+F# validates_formatting_of [![Build Status](https://secure.travis-ci.org/mattdbridges/validates_formatting_of.png)](http://travis-ci.org/mattdbridges/validates_formatting_of)
 
 The `validates_formatting_of` gem adds several convenient methods to validate things such as emails, urls, and phone numbers in a Rails application.
 
@@ -105,4 +105,8 @@ If, for any reason, you want to use your own regex instead of Rail's built-in me
 # Development and Contribution
 
 It is very easy to contribute to this gem. Full documentation to do so will be added in the near future.
+
+# Have Ideas?
+
+Do you use a particular pattern on a regular basis that isn't here or you would like to contribute? For now, [create a new issue](https://github.com/mattdbridges/validates_formatting_of/issues/new) in the issue tracker. I would be more than happy to consider adding it to the project.
     
