@@ -52,6 +52,7 @@ module ValidatesFormattingOf
       /^([A-F0-9]{6}|[A-F0-9]{3})$/i
     end
     
+    # Ensures that what value is passed is a dollar amount of some kind
     def dollars
       /^\$?(\d{1,3}(\,\d{3})*|(\d+))(\.\d{2})?$/
     end

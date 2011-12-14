@@ -93,6 +93,12 @@ You can still add the following options when using `validates_formatting_of`:
       validates_formatting_of :color, :using => :hex_color
     end
 
+### Dollar Amount
+
+    class Invoice < ActiveRecord::Base
+      validates_formatting_of :amount, :using => :dollars
+    end
+
 # Customizable
 
 If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the `:regex` option. For example,
