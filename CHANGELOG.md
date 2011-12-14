@@ -1,3 +1,8 @@
+## v0.3.6
+
+* Added a small mention of how to suggest validation patterns
+* Added validation method for dollar amounts
+
 ## v0.3.5
 
 * Quick release to fix Ruby environment bugs introduced in v0.3.4.
