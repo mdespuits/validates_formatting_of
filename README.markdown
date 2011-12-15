@@ -63,19 +63,19 @@ You can still add the following options when using `validates_formatting_of`:
     class Purchases < ActiveRecord::Base
       validates_formatting_of :cc, :using => :credit_card
     end
-    
+
 ### US Zipcodes
 
     class Location < ActiveRecord::Base
       validates_formatting_of :zipcode, :using => :us_zip
     end
-    
+
 ### US Phone numbers
 
     class Phones < ActiveRecord::Base
       validates_formatting_of :phone, :using => :us_phone
     end
-    
+
 ### IP Address
 
     class Location < ActiveRecord::Base
@@ -85,8 +85,8 @@ You can still add the following options when using `validates_formatting_of`:
 
     class User < ActiveRecord::Base
       validates_formatting_of :ssn, :using => :ssn
-    end 
-    
+    end
+
 ### Hex Colors
 
     class Color < ActiveRecord::Base
@@ -115,4 +115,4 @@ It is very easy to contribute to this gem. Full documentation to do so will be a
 # Have Ideas?
 
 Do you use a particular pattern on a regular basis that isn't here or you would like to contribute? For now, [create a new issue](https://github.com/mattdbridges/validates_formatting_of/issues/new) in the issue tracker. I would be more than happy to consider adding it to the project.
-    
+

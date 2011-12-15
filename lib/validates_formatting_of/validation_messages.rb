@@ -2,7 +2,7 @@ module ValidatesFormattingOf
   module ValidationMessages
 
     class Messages
-      
+
       def self.hash
         {
           :email => "is not a valid email",
@@ -18,7 +18,7 @@ module ValidatesFormattingOf
           :dollars => "is not a valid dollar amount"
         }
       end
-       
+
     end
 
     extend self
