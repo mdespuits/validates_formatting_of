@@ -3,7 +3,6 @@ require 'spec_helper'
 describe ValidatesFormattingOf::ModelAdditions do
 
   describe "email" do
-
     class Email < SuperModel::Base
       validates_formatting_of :email, :using => :email
     end
@@ -14,10 +13,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Email.new(:email => "some-random%%%strangely-formatted-email@lots.of.subdomains.com").should be_valid
       Email.new(:email => "this__???{}|__should@be-valid.com").should be_valid
     end
-
   end
-  describe "url" do
 
+  describe "url" do
     class Webpage < SuperModel::Base
       validates_formatting_of :url, :using => :url
     end
@@ -28,10 +26,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Webpage.new(:url => 'http://username:password@something-else.com').should be_valid
       Webpage.new(:url => "something else").should_not be_valid
     end
-
   end
+
   describe "us_zip" do
-    
     class USZip < SuperModel::Base
       validates_formatting_of :zipcode, :using => :us_zip
     end
@@ -42,10 +39,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       USZip.new(:zipcode => '23408234').should_not be_valid
       USZip.new(:zipcode => 'invalid').should_not be_valid
     end
-
   end
+
   describe "alpha" do
-    
     class Alpha < SuperModel::Base
       validates_formatting_of :letters, :using => :alpha
     end
@@ -55,10 +51,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Alpha.new(:letters => 'adsufasodfksadjfskjdfha98').should_not be_valid
       Alpha.new(:letters => 'asdf ausdpf98hasdfo alsdf ja8 sd').should_not be_valid
     end
-
   end
+
   describe "alphanum" do
-    
     class Alphanum < SuperModel::Base
       validates_formatting_of :letters_and_numbers, :using => :alphanum
     end
@@ -68,10 +63,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Alphanum.new(:letters_and_numbers => 'letters and numbers 123 with spaces').should be_valid
       Alphanum.new(:letters_and_numbers => 'adding ; some special ** chars').should_not be_valid
     end
-
   end
+
   describe "us_phone" do
-    
     class USPhone < SuperModel::Base
       validates_formatting_of :phone_number, :using => :us_phone
     end
@@ -82,10 +76,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       USPhone.new(:phone_number => '2349870238').should_not be_valid
       USPhone.new(:phone_number => '12349870238').should_not be_valid
     end
-
   end
+
   describe "ip_address" do
-    
     class IPAddress < SuperModel::Base
       validates_formatting_of :ip, :using => :ip_address
     end
@@ -97,12 +90,11 @@ describe ValidatesFormattingOf::ModelAdditions do
       IPAddress.new(:ip => '127.0.0.1').should be_valid
       IPAddress.new(:ip => '132.254.111.10').should be_valid
     end
-
   end
+
   # For clarification, NONE of the following numbers are real credit card numbers.
   # They only match the pattern. These were randomly made for testing.
   describe "credit_card" do
-    
     class Client < SuperModel::Base
       validates_formatting_of :cc, :using => :credit_card
     end
@@ -112,8 +104,8 @@ describe ValidatesFormattingOf::ModelAdditions do
       Client.new(:cc => '5422434400828888').should be_valid # Mastercard style
       Client.new(:cc => '1233444444444444').should_not be_valid # fake
     end
-
   end
+
   describe "ssn" do
     class AnotherPerson < SuperModel::Base
       validates_formatting_of :ssn, :using => :ssn
@@ -127,6 +119,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
     end
   end
+
   describe "hex_color" do
     class Color < SuperModel::Base
       validates_formatting_of :color, :using => :hex_color
@@ -160,50 +153,49 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
   describe "custom messages" do
-
     class Message < SuperModel::Base
       validates_formatting_of :first_name, :using => :alpha, :message => "is not a valid first name"
     end
-
     it "are allowed and can be used in displaying error messages" do
       message = Message.new(:first_name => "invalid-first-name-123")
       message.should_not be_valid
       message.errors.keys.class.should eq Array
       message.errors.full_messages.first.should =~ /is not a valid first name/
     end
-
   end
-  describe "default error messages" do
 
+  describe "default error messages" do
     class Problems < SuperModel::Base
       validates_formatting_of :name, :using => :alpha
     end
-
     it "set a default error" do
       problems = Problems.new(:name => "sdfs12312dfsd")
       problems.should_not be_valid
       problems.errors.full_messages.first.should =~ /letters/i
-
       email = Email.new(:email => "fake@email.address")
       email.should_not be_valid
       email.errors.full_messages.first.should =~ /email/i
     end
-
   end
+
+=begin
   # Currently, SuperModel's validations do not detect allow_blank or allow_nil
   # This functionality has been tested separately in an empty Rails app with perfect
   # results.
-  # 
-  # describe "nil and blank values" do
-  #   class People < SuperModel::Base
-  #     validates_formatting_of :last_name, :using => :alpha, :allow_blank => true
-  #   end
-  #   it "are allowed" do
-  #     p = People.new(:last_name => "something")
-  #     p.should be_valid
-  #     p.save!
-  #     p.last_name = ""
-  #     p.should_not be_valid
-  #   end
-  # end
+
+  describe "nil and blank values" do
+    class People < SuperModel::Base
+      validates_formatting_of :last_name, :using => :alpha, :allow_blank => true
+    end
+    it "are allowed" do
+      p = People.new(:last_name => "something")
+      p.should be_valid
+      p.save!
+      p.reload
+      p.last_name = ""
+      p.should_not be_valid
+    end
+  end
+=end
+
 end
