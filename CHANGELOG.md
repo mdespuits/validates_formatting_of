@@ -1,3 +1,7 @@
+## v0.3.7
+
+* Bugfix in `:allow_nil` and `:allow_blank`
+
 ## v0.3.6
 
 * Added a small mention of how to suggest validation patterns
