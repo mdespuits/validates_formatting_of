@@ -72,8 +72,10 @@ describe ValidatesFormattingOf::ModelAdditions do
     it "validates that the phone number provided is valid" do
       USPhone.new(:phone_number => '(234) 234-3456').should be_valid
       USPhone.new(:phone_number => '123 123 3456').should be_valid
+      USPhone.new(:phone_number => '1231233456').should be_valid
+      USPhone.new(:phone_number => '123.123.3456').should be_valid
       USPhone.new(:phone_number => '(223)123-2347').should be_valid
-      USPhone.new(:phone_number => '2349870238').should_not be_valid
+      USPhone.new(:phone_number => '(223 123-2347').should_not be_valid
       USPhone.new(:phone_number => '12349870238').should_not be_valid
     end
   end
