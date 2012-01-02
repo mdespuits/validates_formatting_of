@@ -11,6 +11,13 @@ module ValidatesFormattingOf
     # This call will ensure that the user-provided email is a valid email. This way,
     # you will not need to find or write your own regex to validate. All of that
     # logic is contained within `validates_formatting_of`
+    # 
+    # You can also pass conditions and options for Rails to use
+    # * :if
+    # * :unless
+    # * :allow_nil
+    # * :allow_blank
+    # * :on
     def validates_formatting_of(attribute, opts={})
       regex_for_validation = opts[:regex] || validate_with(opts[:using])
       validation_message = opts[:message] || ValidationMessages.message(opts[:using])
@@ -20,8 +27,9 @@ module ValidatesFormattingOf
           :message => validation_message,
         }
       }
-      options.merge!(:allow_nil => opts[:allow_nil]) unless opts[:allow_nil].nil?
-      options.merge!(:allow_blank => opts[:allow_blank]) unless opts[:allow_blank].nil?
+      %w(allow_nil allow_blank if unless on).each do |opt|
+        options.merge!(opt.to_sym => opts[opt.to_sym]) if opts[opt.to_sym].present?
+      end
       validates(attribute, options)
     end
 

@@ -138,6 +138,35 @@ describe ValidatesFormattingOf::ModelAdditions do
       Color.new(:color => "sdfsdfsf").should_not be_valid
     end
   end
+  
+  describe "validation options" do
+    class Phony < SuperModel::Base
+      validates_formatting_of :phone, :using => :us_phone, :on => :create 
+    end
+    it "validates the phone formatting only on creation" do
+      option = Phony.create!(:phone => "(123) 234-4567")
+      option.phone = "123123123"
+      option.should be_valid
+    end
+    
+    class Iffy < SuperModel::Base
+      validates_presence_of :name
+      validates_formatting_of :phone, :using => :us_phone, :if => lambda { |iffy| iffy.name == "Matthew" }
+    end
+    it "validates the phone formatting only if a name is specified" do
+      Iffy.new(:phone => "(123 345-4567", :name => "Bill").should be_valid
+      Iffy.new(:phone => "(123 345-4567", :name => "Matthew").should_not be_valid
+    end
+    
+    class Unlessy < SuperModel::Base
+      validates_presence_of :name
+      validates_formatting_of :phone, :using => :us_phone, :unless => lambda { |unlessy| unlessy.name == "Matthew" }
+    end
+    it "validates the phone formatting only if a name is specified" do
+      Unlessy.new(:phone => "(123 345-4567", :name => "Bill").should_not be_valid
+      Unlessy.new(:phone => "(123 345-4567", :name => "Matthew").should be_valid
+    end
+  end
   describe "dollars" do
     class Money < SuperModel::Base
       validates_formatting_of :amount, :using => :dollars

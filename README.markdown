@@ -30,7 +30,10 @@ You can still add the following options when using `validates_formatting_of`:
 
 * `:allow_nil`
 * `:allow_blank`
-* `:message` for custom validation messages
+* `:on`
+* `:if`
+* `:unless`
+* You also specify the `:message` option to use a custom validation message.
 
 # Available Formatting Validations
 
