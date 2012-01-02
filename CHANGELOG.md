@@ -1,3 +1,8 @@
+## v0.4.0
+
+* Email and phone validations more flexible.
+* Can now pass options such as `:if`, `:unless`, and `:on` to `validates_formatting_of`
+
 ## v0.3.7
 
 * Bugfix in `:allow_nil` and `:allow_blank`
