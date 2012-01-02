@@ -12,6 +12,8 @@ describe ValidatesFormattingOf::ModelAdditions do
       Email.new(:email => "mbridges.91@gmail.com").should be_valid
       Email.new(:email => "some-random%%%strangely-formatted-email@lots.of.subdomains.com").should be_valid
       Email.new(:email => "this__???{}|__should@be-valid.com").should be_valid
+      Email.new(:email => "visitorservices@vmfa.museum").should be_valid
+      Email.new(:email => "info@samoa.travel").should be_valid
     end
   end
 
@@ -172,7 +174,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       problems = Problems.new(:name => "sdfs12312dfsd")
       problems.should_not be_valid
       problems.errors.full_messages.first.should =~ /letters/i
-      email = Email.new(:email => "fake@email.address")
+      email = Email.new(:email => "not.an.email.address")
       email.should_not be_valid
       email.errors.full_messages.first.should =~ /email/i
     end
