@@ -33,7 +33,7 @@ You can still add the following options when using `validates_formatting_of`:
 * `:on`
 * `:if`
 * `:unless`
-* You also specify the `:message` option to use a custom validation message.
+* You can also specify the `:message` option to use a custom validation message.
 
 # Available Formatting Validations
 
