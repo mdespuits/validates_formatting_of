@@ -100,7 +100,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     class Client < SuperModel::Base
       validates_formatting_of :cc, :using => :credit_card
     end
-    it "validates that the email provided is valid" do
+    it "validates that the credit card number provided is valid" do
       Client.new(:cc => '4264-2879-1230-0000').should be_valid # Visa style
       Client.new(:cc => '6011-1111-0000-2391').should be_valid # Discover style
       Client.new(:cc => '5422434400828888').should be_valid # Mastercard style
