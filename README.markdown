@@ -4,6 +4,13 @@
 
 The `validates_formatting_of` gem adds several convenient methods to validate things such as emails, urls, and phone numbers in a Rails application.
 
+# Unsupported versions
+
+Please note that this module takes advantage of regular expression features which are newer features in Ruby. Because of this, certain versions are not supported:
+
+* 1.8.7
+* Ruby Enterprise Edition (REE)
+
 # Installation
 
 To install `validates_formatting_of`, add the following to your `Gemfile`:

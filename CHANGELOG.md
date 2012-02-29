@@ -1,3 +1,8 @@
+## v0.4.2
+* Dropped support for Ruby 1.8.7
+* Dropped support for REE
+* Updated email regex so that hosts/domains cannot start or end with hyphens.
+
 ## v0.4.0
 
 * Email and phone validations more flexible.

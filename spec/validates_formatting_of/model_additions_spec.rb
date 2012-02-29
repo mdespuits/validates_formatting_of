@@ -14,6 +14,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Email.new(:email => "this__???{}|__should@be-valid.com").should be_valid
       Email.new(:email => "visitorservices@vmfa.museum").should be_valid
       Email.new(:email => "info@samoa.travel").should be_valid
+      Email.new(:email => "info@-samoa.travel").should_not be_valid
+      Email.new(:email => "info@samoa-.travel").should_not be_valid
+      Email.new(:email => "info@123-samoa.travel").should be_valid
     end
   end
 
