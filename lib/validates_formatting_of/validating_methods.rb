@@ -3,7 +3,7 @@ module ValidatesFormattingOf
 
     # This method is very close to allowing what is specified in RFC 5322 and RFC 5321
     def email
-      /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+      /\A([^@\s]+)@((?:(?!-)[-a-z0-9]+(?<!-)\.)+[a-z]{2,})\Z/i
     end
 
     # Taken from Ryan Bates' screencast on extracting gems. Works extremely well. Thanks Ryan!
