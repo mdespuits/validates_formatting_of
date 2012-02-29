@@ -6,7 +6,7 @@ The `validates_formatting_of` gem adds several convenient methods to validate th
 
 # Unsupported versions
 
-Please note that this module takes advantage of regular expression features which are newer features in Ruby. Because of this, certain versions are not supported:
+Please note that this gem takes advantage of regular expression features which are newer features in Ruby. Because of this, certain versions are not supported:
 
 * 1.8.7
 * Ruby Enterprise Edition (REE)
