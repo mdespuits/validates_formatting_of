@@ -3,6 +3,9 @@
 * Dropped support for REE
 * Updated email regex so that hosts/domains cannot start or end with hyphens.
 
+## v0.4.1
+* __Removed Ruby-specific Regex flags in email.__ This was breaking an implementation in another project which used the `client_side_validations` gem which pulled in the Regex directly from the model. As the `u` and `x` flags are not supported by javascript, this made `client_side_validations` entirely useless.
+
 ## v0.4.0
 
 * Email and phone validations more flexible.
