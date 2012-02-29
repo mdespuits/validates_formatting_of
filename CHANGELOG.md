@@ -1,4 +1,4 @@
-## v0.4.2
+## v0.5.0
 * Dropped support for Ruby 1.8.7
 * Dropped support for REE
 * Updated email regex so that hosts/domains cannot start or end with hyphens.
