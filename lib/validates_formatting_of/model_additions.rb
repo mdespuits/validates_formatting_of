@@ -37,12 +37,8 @@ module ValidatesFormattingOf
 
     def validate_with(method)
       # Actually retrieve the regex to check against
-      formatting.send(method)
+      ValidatingMethods.send(method)
     end
 
-    def formatting
-      # Grab the validating methods
-      @formatting ||= ValidatingMethods.new
-    end
   end
 end
