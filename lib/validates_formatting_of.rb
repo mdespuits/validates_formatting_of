@@ -1,5 +1,3 @@
-# This file does all of the preloading. Little to no actual code should go in this file.
-
 require "validates_formatting_of/version"
 require "validates_formatting_of/validation_messages"
 require "validates_formatting_of/validating_methods"
