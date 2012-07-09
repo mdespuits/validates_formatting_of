@@ -7,6 +7,13 @@ module ValidatesFormattingOf
         %r{\A([^@\s]+)@((?:(?!-)[-a-z0-9]+(?<!-)\.)+[a-z]{2,})\Z}i
       end
 
+      # Thie version of the email exists to support common validation libraries (such
+      # as client_side_validations) that require access to Rails' validation. Look-behinds
+      # are not supported in javascript.
+      def simple_email
+        %r{\A([^@\s]+)@((?:(?!-)[-a-z0-9]+(?<!-)\.)+[a-z]{2,})\Z}i
+      end
+
       # Taken from Ryan Bates' screencast on extracting gems. Works extremely well. Thanks Ryan!
       # (slightly revised to work on MRI 1.8.7 and ree)
       def url

@@ -3,6 +3,7 @@ module ValidatesFormattingOf
 
     Messages = {
       :email => "is not a valid email",
+      :simple_email => "is not a valid email",
       :url => "is not a valid URL",
       :alpha => "must be only letters or dashes",
       :alphanum => "must be letters, numbers",

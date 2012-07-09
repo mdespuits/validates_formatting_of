@@ -20,6 +20,23 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
 
+  describe "simple email for 1.8.7 and javascript validations (such as with client_side_validations)" do
+    class SimpleEmail < SuperModel::Base
+      validates_formatting_of :email, :using => :simple_email
+    end
+    it "validates that the email provided is valid" do
+      Email.new(:email => "example@example.com").should be_valid
+      Email.new(:email => "badexample.com").should_not be_valid
+      Email.new(:email => "mbridges.91@gmail.com").should be_valid
+      Email.new(:email => "some-random%%%strangely-formatted-email@lots.of.subdomains.com").should be_valid
+      Email.new(:email => "this__???{}|__should@be-valid.com").should be_valid
+      Email.new(:email => "visitorservices@vmfa.museum").should be_valid
+      Email.new(:email => "info@samoa.travel").should be_valid
+      Email.new(:email => "info@-samoa.travel").should_not be_valid
+      Email.new(:email => "info@samoa-.travel").should_not be_valid
+      Email.new(:email => "info@123-samoa.travel").should be_valid
+    end
+  end
   describe "url" do
     class Webpage < SuperModel::Base
       validates_formatting_of :url, :using => :url

@@ -39,6 +39,5 @@ module ValidatesFormattingOf
       # Actually retrieve the regex to check against
       ValidatingMethods.send(method)
     end
-
   end
 end
