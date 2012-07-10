@@ -54,6 +54,11 @@ module ValidatesFormattingOf
 
       # IP Address validation
       def ip_address
+        warn "[DEPRECATION] The :ip_address validation for `valdiates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
+        ip_address_v4
+      end
+
+      def ip_address_v4
         %r{\A(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\Z}
       end
 
