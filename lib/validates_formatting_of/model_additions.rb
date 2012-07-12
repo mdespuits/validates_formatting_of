@@ -19,7 +19,7 @@ module ValidatesFormattingOf
     # * :allow_blank
     # * :on
     def validates_formatting_of(attribute, opts={})
-      validation = ValidatingMethods[opts[:using]]
+      validation = Methods[opts[:using]]
       options = {
         :format => {
           :with => (opts[:regex] || validation.regex),

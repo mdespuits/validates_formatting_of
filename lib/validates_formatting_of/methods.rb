@@ -28,7 +28,7 @@ module ValidatesFormattingOf
     end
   end
 
-  module ValidatingMethods
+  module Methods
 
     extend ValidationAddition
 
