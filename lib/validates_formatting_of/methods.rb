@@ -1,5 +1,7 @@
 module ValidatesFormattingOf
 
+  class MissingValidation < StandardError; end
+
   class Validation
     attr_reader :name, :regex, :message
 
@@ -25,6 +27,10 @@ module ValidatesFormattingOf
         warn "[DEPRECATION] The :ip_address validation for `valdiates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
       end
       @validations[name.to_sym]
+    end
+
+    def exists?(name)
+      !@validations[name.to_sym].nil?
     end
   end
 

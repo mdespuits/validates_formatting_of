@@ -5,7 +5,7 @@ describe ValidatesFormattingOf::ModelAdditions do
   describe "email" do
     class Email < TestActiveRecord
       attr_accessor :email
-      validates_formatting_of :email, :using => :email
+      validates_formatting_of :email
     end
     it "validates that the email provided is valid" do
       Email.new(:email => "example@example.com").should be_valid
@@ -42,7 +42,7 @@ describe ValidatesFormattingOf::ModelAdditions do
   describe "url" do
     class Webpage < TestActiveRecord
       attr_accessor :url
-      validates_formatting_of :url, :using => :url
+      validates_formatting_of :url
     end
     it "validates that the url provided is valid" do
       Webpage.new(:url => 'http://something.com').should be_valid
@@ -69,14 +69,14 @@ describe ValidatesFormattingOf::ModelAdditions do
 
   describe "alpha" do
     class Alpha < TestActiveRecord
-      attr_accessor :letters
-      validates_formatting_of :letters, :using => :alpha
+      attr_accessor :alpha
+      validates_formatting_of :alpha
     end
     it "validates that the letters provided is valid" do
-      Alpha.new(:letters => 'abscdsofjsdpfahdsofkajlsdfaspdhjfads').should be_valid
-      Alpha.new(:letters => 'asdfalskdfjhas-dlfhasdksdfaldhfadsfasdfa').should be_valid
-      Alpha.new(:letters => 'adsufasodfksadjfskjdfha98').should_not be_valid
-      Alpha.new(:letters => 'asdf ausdpf98hasdfo alsdf ja8 sd').should_not be_valid
+      Alpha.new(:alpha => 'abscdsofjsdpfahdsofkajlsdfaspdhjfads').should be_valid
+      Alpha.new(:alpha => 'asdfalskdfjhas-dlfhasdksdfaldhfadsfasdfa').should be_valid
+      Alpha.new(:alpha => 'adsufasodfksadjfskjdfha98').should_not be_valid
+      Alpha.new(:alpha => 'asdf ausdpf98hasdfo alsdf ja8 sd').should_not be_valid
     end
   end
 
@@ -157,7 +157,7 @@ describe ValidatesFormattingOf::ModelAdditions do
   describe "ssn" do
     class AnotherPerson < TestActiveRecord
       attr_accessor :ssn
-      validates_formatting_of :ssn, :using => :ssn
+      validates_formatting_of :ssn
     end
     it "validates that the social security number provided is valid" do
       AnotherPerson.new(:ssn => "145.47.0191").should be_valid

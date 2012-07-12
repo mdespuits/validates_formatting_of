@@ -19,7 +19,16 @@ module ValidatesFormattingOf
     # * :allow_blank
     # * :on
     def validates_formatting_of(attribute, opts={})
-      validation = Methods[opts[:using]]
+
+      if opts[:using].nil?
+        validation = Methods[attribute]
+        if !Methods.exists? attribute
+          raise MissingValidation, "#{attribute.to_sym.inspect} is not a built-in validation. Please specify a validation with :using => [VALIDATION_NAME]"
+        end
+      else
+        validation = Methods[opts[:using]]
+      end
+
       options = {
         :format => {
           :with => (opts[:regex] || validation.regex),
