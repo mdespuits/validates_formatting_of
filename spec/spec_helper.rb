@@ -1,4 +1,5 @@
 require 'validates_formatting_of'
+require 'active_model'
 
 class TestActiveRecord
   include ActiveModel::Validations
