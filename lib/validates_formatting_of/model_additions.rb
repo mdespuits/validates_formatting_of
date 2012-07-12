@@ -23,7 +23,7 @@ module ValidatesFormattingOf
       if opts[:using].nil?
         validation = Methods[attribute]
         if !Methods.exists? attribute
-          raise MissingValidation, "#{attribute.to_sym.inspect} is not a built-in validation. Please specify a validation with :using => [VALIDATION_NAME]"
+          raise MissingValidation, "The column #{attribute.to_sym.inspect} is not a built-in validation. Please specify a validation with :using => [VALIDATION_NAME]"
         end
       else
         validation = Methods[opts[:using]]
