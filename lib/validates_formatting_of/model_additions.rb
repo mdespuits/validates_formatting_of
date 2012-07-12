@@ -19,12 +19,11 @@ module ValidatesFormattingOf
     # * :allow_blank
     # * :on
     def validates_formatting_of(attribute, opts={})
-      regex_for_validation = opts[:regex] || validate_with(opts[:using])
-      validation_message = opts[:message] || ValidationMessages.message(opts[:using])
+      validation = ValidatingMethods[opts[:using]]
       options = {
         :format => {
-          :with => regex_for_validation,
-          :message => validation_message,
+          :with => (opts[:regex] || validation.regex),
+          :message => (opts[:message] || validation.message),
         }
       }
       %w(allow_nil allow_blank if unless on).each do |opt|
@@ -33,11 +32,5 @@ module ValidatesFormattingOf
       validates(attribute, options)
     end
 
-  private
-
-    def validate_with(method)
-      # Actually retrieve the regex to check against
-      ValidatingMethods.send(method)
-    end
   end
 end
