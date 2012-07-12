@@ -1,5 +1,4 @@
 require 'validates_formatting_of'
-require 'supermodel'
 
 class TestActiveRecord
   include ActiveModel::Validations
