@@ -10,7 +10,7 @@ module ValidatesFormattingOf
     def find(attribute, opts)
       method = opts[:using].nil? ? attribute : opts[:using]
       if !exists? method
-        raise MissingValidation, "The method #{method.to_sym.inspect} is not a built-in validation."
+        raise MissingValidation, "The validation method #{method.to_sym.inspect} has not been defined."
       end
       self[method]
     end
