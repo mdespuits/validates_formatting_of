@@ -3,25 +3,29 @@ require 'validates_formatting_of/validation'
 module ValidatesFormattingOf
 
   describe Validation do
-    it "should receive the right parameters" do
-      val = Validation.new(:name, /something/i, "is an invalid value")
-      val.name.should == :name
-      val.regex.should == %r{something}i
-      val.message.should == 'is an invalid value'
+    context "valid validation creation" do
+      let(:validation) { Validation.new(:name, /something/i, "is an invalid value") }
+      it "should receive the right parameters" do
+        validation.name.should == :name
+        validation.regex.should == %r{something}i
+        validation.message.should == 'is an invalid value'
+      end
+      it "should print properly" do
+        validation.to_s.should == "<Validation::name>"
+      end
+      it "should be inspected properly" do
+        validation.inspect.should =~ /Validation/
+        validation.inspect.should =~ /\/something\/i/
+        validation.inspect.should =~ /\:name/
+      end
     end
-    it "should print properly" do
-      val = Validation.new(:name, /something/i, "is an invalid value")
-      val.to_s.should == "<Validation::name>"
-    end
-    it "should be inspected properly" do
-      val = Validation.new(:name, /something/i, "is an invalid value")
-      val.inspect.should =~ /Validation/
-      val.inspect.should =~ /\/something\/i/
-      val.inspect.should =~ /\:name/
-    end
-    it "should issue a warning if the specified regex is not a Regexp object" do
-      Kernel.should_receive(:warn).with("You must specify a Regexp object in :name for proper validation.")
-      Validation.new(:name, 123, "is an invalid value")
+    context "invalid validation creation" do
+      it "should raise an error if the specified regex is not a Regexp objct" do
+        expect { Validation.new(:name, 123, "is an invalid value") }.to raise_error InvalidRegularExpression
+      end
+      it "should not raise an error if the regex if valid" do
+        expect { Validation.new(:name, /something/i, "is an invalid value") }.not_to raise_error InvalidRegularExpression
+      end
     end
   end
 
