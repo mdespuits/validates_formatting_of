@@ -5,7 +5,7 @@ module ValidatesFormattingOf
 
   class MissingValidation < StandardError; end
 
-  module Methods
+  module Method
 
     extend ValidationAddition
 
