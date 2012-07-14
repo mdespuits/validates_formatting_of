@@ -7,7 +7,7 @@ module ValidatesFormattingOf
       @validations[name.to_sym] = Validation.new(name.to_sym, regex, message)
     end
 
-    def select_method(attribute, opts)
+    def find(attribute, opts)
       method = opts[:using].nil? ? attribute : opts[:using]
       if !exists? method
         raise MissingValidation, "The method #{method.to_sym.inspect} is not a built-in validation."

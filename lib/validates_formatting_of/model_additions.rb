@@ -20,7 +20,7 @@ module ValidatesFormattingOf
     # * :on
     def validates_formatting_of(attribute, opts={})
 
-      validation = Method.select_method(attribute, opts)
+      validation = Method.find(attribute, opts)
 
       options = {
         :format => {
