@@ -1,3 +1,6 @@
+require 'simplecov'
+SimpleCov.start
+
 require 'validates_formatting_of'
 require 'active_model'
 
