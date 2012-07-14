@@ -12,5 +12,9 @@ module ValidatesFormattingOf
     def inspect
       "#<Validation name: #{name.inspect}, regex: #{regex.inspect}, message: #{message}>"
     end
+
+    def to_s
+      "<Validation::#{name.to_s}>"
+    end
   end
 end

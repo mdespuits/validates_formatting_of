@@ -9,6 +9,10 @@ module ValidatesFormattingOf
       val.regex.should == %r{something}i
       val.message.should == 'is an invalid value'
     end
+    it "should print properly" do
+      val = Validation.new(:name, /something/i, "is an invalid value")
+      val.to_s.should == "<Validation::name>"
+    end
     it "should be inspected properly" do
       val = Validation.new(:name, /something/i, "is an invalid value")
       val.inspect.should =~ /Validation/
@@ -18,7 +22,6 @@ module ValidatesFormattingOf
     it "should issue a warning if the specified regex is not a Regexp object" do
       Kernel.should_receive(:warn).with("You must specify a Regexp object in :name for proper validation.")
       Validation.new(:name, 123, "is an invalid value")
-
     end
   end
 
