@@ -1,18 +1,8 @@
+require 'validates_formatting_of/validation'
+
 module ValidatesFormattingOf
 
   class MissingValidation < StandardError; end
-
-  class Validation
-    attr_reader :name, :regex, :message
-
-    def initialize(name, regex, message = nil)
-      @name, @regex, @message = name, regex, (message || "is not correctly formatted")
-    end
-
-    def to_s
-      "#<Validation name: #{name.inspect}, regex: #{regex}, message: #{message}>"
-    end
-  end
 
   module ValidationAddition
     attr_reader :validations
