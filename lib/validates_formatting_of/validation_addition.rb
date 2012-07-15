@@ -13,7 +13,7 @@ module ValidatesFormattingOf
         raise MissingValidation, "The validation method #{method.to_sym.inspect} has not been defined."
       end
       if method.to_sym == :ip_address
-        warn "[DEPRECATION] The :ip_address validation for `valdiates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
+        warn "[DEPRECATION] The :ip_address validation for `validates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
       end
       @validations[method.to_sym]
     end
