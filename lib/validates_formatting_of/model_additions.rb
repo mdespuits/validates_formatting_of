@@ -8,10 +8,14 @@ module ValidatesFormattingOf
     #   validates_formatting_of :email, :using => :email
     # end
     #
-    # This call will ensure that the user-provided email is a valid email. This way,
-    # you will not need to find or write your own regex to validate. All of that
-    # logic is contained within `validates_formatting_of`
-    # 
+    # If your column name is idencital to any of the built-in methods, you
+    # may leave off the `:using` option and validates_formatting_of will
+    # automatically use the validation with the matching name.
+    #
+    # class User < ActiveRecord::Base
+    #   validates_formatting_of :email
+    # end
+    #
     # You can also pass conditions and options for Rails to use
     # * :if
     # * :unless
@@ -28,7 +32,7 @@ module ValidatesFormattingOf
           :message => (opts[:message] || validation.message),
         }
       }
-      %w(allow_nil allow_blank if unless on).each do |opt|
+      %w[allow_nil allow_blank if unless on].each do |opt|
         options.merge!(opt.to_sym => opts[opt.to_sym]) if opts[opt.to_sym].present?
       end
       validates(attribute, options)
