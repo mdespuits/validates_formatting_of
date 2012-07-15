@@ -16,10 +16,6 @@ module ValidatesFormattingOf
       TestAdding.validations[:email].should be_instance_of Validation
       TestAdding.validations[:another].should be_instance_of Validation
     end
-    it "should be able to retrive the method through Hash-like syntax" do
-      TestAdding[:email].should be_instance_of Validation
-      expect { TestAdding[:name] }.to raise_error MissingValidation
-    end
     it "should be able to smartly determine the method to use" do
       validation = TestAdding.find(:email)
       validation.name.should == :email

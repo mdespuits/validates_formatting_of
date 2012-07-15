@@ -9,17 +9,13 @@ module ValidatesFormattingOf
 
     def find(attribute, opts = {})
       method = opts[:using].nil? ? attribute : opts[:using]
-      self[method]
-    end
-
-    def [](name)
-      if !exists? name
-        raise MissingValidation, "The validation method #{name.to_sym.inspect} has not been defined."
+      if !exists? method
+        raise MissingValidation, "The validation method #{method.to_sym.inspect} has not been defined."
       end
-      if name.to_sym == :ip_address
+      if method.to_sym == :ip_address
         warn "[DEPRECATION] The :ip_address validation for `valdiates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
       end
-      @validations[name.to_sym]
+      @validations[method.to_sym]
     end
 
     def exists?(name)
