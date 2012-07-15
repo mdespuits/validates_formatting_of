@@ -265,24 +265,24 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
 
-=begin
-  # Currently, SuperModel's validations do not detect allow_blank or allow_nil
-  # This functionality has been tested separately in an empty Rails app with perfect
-  # results.
-
   describe "nil and blank values" do
-    class People < TestActiveRecord
-      validates_formatting_of :last_name, :using => :alpha, :allow_blank => true
+    class PeopleTest < TestActiveRecord
+      attr_accessor :email, :email2, :email3
+      validates_formatting_of :email, :allow_nil => true
+      validates_formatting_of :email2, :using => :email, :allow_blank => true
+      validates_formatting_of :email3, :using => :email
     end
-    it "are allowed" do
-      p = People.new(:last_name => "something")
-      p.should be_valid
-      p.save!
-      p.reload
-      p.last_name = ""
-      p.should_not be_valid
+    let(:people) { PeopleTest.new(:email => "mbridges.91@gmail.com", :email2 => "mbridges.91@gmail.com", :email3 => "mbridges.91@gmail.com") }
+    it "should test nil and blank values correctly" do
+      people.email = nil
+      people.should be_valid
+      people.email = "mbridges.91@gmail.com"
+      people.email2 = ""
+      people.should be_valid
+      people.email2 = "mbridges.91@gmail.com"
+      people.email3 = nil
+      people.should_not be_valid
     end
   end
-=end
 
 end
