@@ -6,8 +6,9 @@ module ValidatesFormattingOf
     attr_reader :name, :regex, :message
 
     def initialize(name, regexp, message = "is not correctly formatted")
-      if regexp.class.to_s != "Regexp"
-        raise InvalidRegularExpression, "You must specify a Regexp object in #{name.inspect} for proper validation."
+      callable = regexp.respond_to? :call
+      if !callable && regexp.class.to_s != "Regexp"
+        raise InvalidRegularExpression, "You must specify a Regexp, a proc, or a lambda for the #{name.inspect} validation."
       end
       @name, @regex, @message = name, regexp, message
     end
