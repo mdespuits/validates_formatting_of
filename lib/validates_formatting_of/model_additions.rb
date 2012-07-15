@@ -22,20 +22,15 @@ module ValidatesFormattingOf
     # * :allow_nil
     # * :allow_blank
     # * :on
-    def validates_formatting_of(attribute, opts={})
-
+    def validates_formatting_of(attribute, opts = {})
       validation = Method.find(attribute, opts)
 
       options = {
-        :format => {
-          :with => (opts[:regex] || validation.regex),
-          :message => (opts[:message] || validation.message),
-        }
-      }
-      %w[allow_nil allow_blank if unless on].each do |opt|
-        options.merge!(opt.to_sym => opts[opt.to_sym]) if opts[opt.to_sym].present?
-      end
-      validates(attribute, options)
+        :with => validation.regex,
+        :message => validation.message,
+      }.merge!(opts)
+
+      self.validates_format_of(attribute, options)
     end
 
   end
