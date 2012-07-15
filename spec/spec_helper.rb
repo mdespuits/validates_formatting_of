@@ -7,7 +7,6 @@ require 'active_model'
 class TestActiveRecord
   include ActiveModel::Validations
   include ActiveModel::Conversion
-  extend ActiveModel::Naming
 
   extend ValidatesFormattingOf::ModelAdditions
 
