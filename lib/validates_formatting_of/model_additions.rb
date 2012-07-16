@@ -22,13 +22,13 @@ module ValidatesFormattingOf
     # * :allow_nil
     # * :allow_blank
     # * :on
-    def validates_formatting_of(attribute, opts = {})
-      validation = Method.find(attribute, opts)
+    def validates_formatting_of(attribute, options = {})
+      validation = Method.find(attribute, options)
 
       options = {
         :with => validation.regex,
         :message => validation.message,
-      }.merge!(opts)
+      }.merge!(options)
 
       self.validates_format_of(attribute, options)
     end
