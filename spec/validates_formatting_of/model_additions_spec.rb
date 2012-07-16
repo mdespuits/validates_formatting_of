@@ -3,8 +3,9 @@ require 'spec_helper'
 describe ValidatesFormattingOf::ModelAdditions do
 
   describe "email" do
-    class Email < SuperModel::Base
-      validates_formatting_of :email, :using => :email
+    class Email < TestActiveRecord
+      attr_accessor :email
+      validates_formatting_of :email
     end
     it "validates that the email provided is valid" do
       Email.new(:email => "example@example.com").should be_valid
@@ -21,7 +22,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "simple email for 1.8.7 and javascript validations (such as with client_side_validations)" do
-    class SimpleEmail < SuperModel::Base
+    class SimpleEmail < TestActiveRecord
+      attr_accessor :email
       validates_formatting_of :email, :using => :simple_email
     end
     it "validates that the email provided is valid" do
@@ -38,8 +40,9 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
   describe "url" do
-    class Webpage < SuperModel::Base
-      validates_formatting_of :url, :using => :url
+    class Webpage < TestActiveRecord
+      attr_accessor :url
+      validates_formatting_of :url
     end
     it "validates that the url provided is valid" do
       Webpage.new(:url => 'http://something.com').should be_valid
@@ -51,7 +54,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "us_zip" do
-    class USZip < SuperModel::Base
+    class USZip < TestActiveRecord
+      attr_accessor :zipcode
       validates_formatting_of :zipcode, :using => :us_zip
     end
     it "validates that the zipcode provided is valid" do
@@ -64,19 +68,21 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "alpha" do
-    class Alpha < SuperModel::Base
-      validates_formatting_of :letters, :using => :alpha
+    class Alpha < TestActiveRecord
+      attr_accessor :alpha
+      validates_formatting_of :alpha
     end
     it "validates that the letters provided is valid" do
-      Alpha.new(:letters => 'abscdsofjsdpfahdsofkajlsdfaspdhjfads').should be_valid
-      Alpha.new(:letters => 'asdfalskdfjhas-dlfhasdksdfaldhfadsfasdfa').should be_valid
-      Alpha.new(:letters => 'adsufasodfksadjfskjdfha98').should_not be_valid
-      Alpha.new(:letters => 'asdf ausdpf98hasdfo alsdf ja8 sd').should_not be_valid
+      Alpha.new(:alpha => 'abscdsofjsdpfahdsofkajlsdfaspdhjfads').should be_valid
+      Alpha.new(:alpha => 'asdfalskdfjhas-dlfhasdksdfaldhfadsfasdfa').should be_valid
+      Alpha.new(:alpha => 'adsufasodfksadjfskjdfha98').should_not be_valid
+      Alpha.new(:alpha => 'asdf ausdpf98hasdfo alsdf ja8 sd').should_not be_valid
     end
   end
 
   describe "alphanum" do
-    class Alphanum < SuperModel::Base
+    class Alphanum < TestActiveRecord
+      attr_accessor :letters_and_numbers
       validates_formatting_of :letters_and_numbers, :using => :alphanum
     end
     it "validates that the letters provided is valid" do
@@ -88,7 +94,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "us_phone" do
-    class USPhone < SuperModel::Base
+    class USPhone < TestActiveRecord
+      attr_accessor :phone_number
       validates_formatting_of :phone_number, :using => :us_phone
     end
     it "validates that the phone number provided is valid" do
@@ -103,7 +110,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "ip_address" do
-    class IPAddress < SuperModel::Base
+    class IPAddress < TestActiveRecord
+      attr_accessor :ip
       validates_formatting_of :ip, :using => :ip_address
     end
     it "validates that the IP address provided is valid" do
@@ -117,23 +125,25 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "ip_address_v4" do
-    class IPAddress < SuperModel::Base
-      validates_formatting_of :ip, :using => :ip_address_v4
+    class IPAddress2 < TestActiveRecord
+      attr_accessor :ipv4
+      validates_formatting_of :ipv4, :using => :ip_address_v4
     end
     it "validates that the IP address provided is valid" do
-      IPAddress.new(:ip => '10.10.10').should_not be_valid
-      IPAddress.new(:ip => '999.10.10.20').should_not be_valid
-      IPAddress.new(:ip => '2222.22.22.22').should_not be_valid
-      IPAddress.new(:ip => '22.2222.22.2').should_not be_valid
-      IPAddress.new(:ip => '127.0.0.1').should be_valid
-      IPAddress.new(:ip => '132.254.111.10').should be_valid
+      IPAddress2.new(:ipv4 => '10.10.10').should_not be_valid
+      IPAddress2.new(:ipv4 => '999.10.10.20').should_not be_valid
+      IPAddress2.new(:ipv4 => '2222.22.22.22').should_not be_valid
+      IPAddress2.new(:ipv4 => '22.2222.22.2').should_not be_valid
+      IPAddress2.new(:ipv4 => '127.0.0.1').should be_valid
+      IPAddress2.new(:ipv4 => '132.254.111.10').should be_valid
     end
   end
 
   # For clarification, NONE of the following numbers are real credit card numbers.
   # They only match the pattern. These were randomly made for testing.
   describe "credit_card" do
-    class Client < SuperModel::Base
+    class Client < TestActiveRecord
+      attr_accessor :cc
       validates_formatting_of :cc, :using => :credit_card
     end
     it "validates that the credit card number provided is valid" do
@@ -145,8 +155,9 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "ssn" do
-    class AnotherPerson < SuperModel::Base
-      validates_formatting_of :ssn, :using => :ssn
+    class AnotherPerson < TestActiveRecord
+      attr_accessor :ssn
+      validates_formatting_of :ssn
     end
     it "validates that the social security number provided is valid" do
       AnotherPerson.new(:ssn => "145.47.0191").should be_valid
@@ -159,7 +170,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "hex_color" do
-    class Color < SuperModel::Base
+    class Color < TestActiveRecord
+      attr_accessor :color
       validates_formatting_of :color, :using => :hex_color
     end
     it "validates that the hex color value provided is valid" do
@@ -174,18 +186,22 @@ describe ValidatesFormattingOf::ModelAdditions do
       Color.new(:color => "sdfsdfsf").should_not be_valid
     end
   end
-  
+
   describe "validation options" do
-    class Phony < SuperModel::Base
-      validates_formatting_of :phone, :using => :us_phone, :on => :create 
+    class Phony < TestActiveRecord
+      attr_accessor :phone, :phone2
+      validates_formatting_of :phone, :using => :us_phone, :on => :create
+      validates_formatting_of :phone2, :using => :us_phone, :on => :update
     end
     it "validates the phone formatting only on creation" do
-      option = Phony.create!(:phone => "(123) 234-4567")
+      option = Phony.new(:phone => "(123) 234-4567")
+      option.should be_valid
       option.phone = "123123123"
       option.should be_valid
     end
-    
-    class Iffy < SuperModel::Base
+
+    class Iffy < TestActiveRecord
+      attr_accessor :name, :phone
       validates_presence_of :name
       validates_formatting_of :phone, :using => :us_phone, :if => lambda { |iffy| iffy.name == "Matthew" }
     end
@@ -193,8 +209,9 @@ describe ValidatesFormattingOf::ModelAdditions do
       Iffy.new(:phone => "(123 345-4567", :name => "Bill").should be_valid
       Iffy.new(:phone => "(123 345-4567", :name => "Matthew").should_not be_valid
     end
-    
-    class Unlessy < SuperModel::Base
+
+    class Unlessy < TestActiveRecord
+      attr_accessor :name, :phone
       validates_presence_of :name
       validates_formatting_of :phone, :using => :us_phone, :unless => lambda { |unlessy| unlessy.name == "Matthew" }
     end
@@ -204,7 +221,8 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
   describe "dollars" do
-    class Money < SuperModel::Base
+    class Money < TestActiveRecord
+      attr_accessor :amount
       validates_formatting_of :amount, :using => :dollars
     end
     it "validates that the dollars amount provided is valid" do
@@ -220,7 +238,8 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
   describe "custom messages" do
-    class Message < SuperModel::Base
+    class Message < TestActiveRecord
+      attr_accessor :first_name
       validates_formatting_of :first_name, :using => :alpha, :message => "is not a valid first name"
     end
     it "are allowed and can be used in displaying error messages" do
@@ -232,7 +251,8 @@ describe ValidatesFormattingOf::ModelAdditions do
   end
 
   describe "default error messages" do
-    class Problems < SuperModel::Base
+    class Problems < TestActiveRecord
+      attr_accessor :name
       validates_formatting_of :name, :using => :alpha
     end
     it "set a default error" do
@@ -245,24 +265,24 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
 
-=begin
-  # Currently, SuperModel's validations do not detect allow_blank or allow_nil
-  # This functionality has been tested separately in an empty Rails app with perfect
-  # results.
-
   describe "nil and blank values" do
-    class People < SuperModel::Base
-      validates_formatting_of :last_name, :using => :alpha, :allow_blank => true
+    class PeopleTest < TestActiveRecord
+      attr_accessor :email, :email2, :email3
+      validates_formatting_of :email, :allow_nil => true
+      validates_formatting_of :email2, :using => :email, :allow_blank => true
+      validates_formatting_of :email3, :using => :email
     end
-    it "are allowed" do
-      p = People.new(:last_name => "something")
-      p.should be_valid
-      p.save!
-      p.reload
-      p.last_name = ""
-      p.should_not be_valid
+    let(:people) { PeopleTest.new(:email => "mbridges.91@gmail.com", :email2 => "mbridges.91@gmail.com", :email3 => "mbridges.91@gmail.com") }
+    it "should test nil and blank values correctly" do
+      people.email = nil
+      people.should be_valid
+      people.email = "mbridges.91@gmail.com"
+      people.email2 = ""
+      people.should be_valid
+      people.email2 = "mbridges.91@gmail.com"
+      people.email3 = nil
+      people.should_not be_valid
     end
   end
-=end
 
 end

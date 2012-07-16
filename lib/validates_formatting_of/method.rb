@@ -1,34 +1,11 @@
+require 'validates_formatting_of/validation'
+require 'validates_formatting_of/validation_addition'
+
 module ValidatesFormattingOf
 
-  class Validation
-    attr_reader :name, :regex, :message
+  class MissingValidation < StandardError; end
 
-    def initialize(name, regex, message = nil)
-      @name, @regex, @message = name, regex, (message || "is not correctly formatted")
-    end
-
-    def to_s
-      "#<Validation name: #{name.inspect}, regex: #{regex}, message: #{message}>"
-    end
-  end
-
-  module ValidationAddition
-    attr_reader :validations
-
-    def add(name, regex, message = nil)
-      @validations ||= {}
-      @validations[name.to_sym] = Validation.new(name.to_sym, regex, message)
-    end
-
-    def [](name)
-      if name.to_sym == :ip_address
-        warn "[DEPRECATION] The :ip_address validation for `valdiates_formatting_of` is DEPRECATED. Please update your model validations to use :ip_address_v4. This method will be removed by version 0.7.0."
-      end
-      @validations[name.to_sym]
-    end
-  end
-
-  module Methods
+  module Method
 
     extend ValidationAddition
 
