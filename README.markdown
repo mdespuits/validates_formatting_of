@@ -151,7 +151,7 @@ end
 
 # Over-writable
 
-If, for any reason, you want to overwrite the regex specified in the gem, you can using the `:with` options just like in ActiveModel's built-in `validates_format_of`.
+If, for any reason, you want to overwrite the regex specified in the gem, you can using the `:with` option just like in ActiveModel's built-in `validates_format_of`.
 
 ```ruby
 class Person < ActiveRecord::Base
