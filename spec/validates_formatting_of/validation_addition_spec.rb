@@ -27,9 +27,13 @@ module ValidatesFormattingOf
     it "should raise an error if the method does not exist" do
       expect { TestAdding.find(:fake) }.to raise_error MissingValidation
     end
-    it "should be able to determine if the method exists" do
+    it "should be able to determine if the method does not exist" do
       TestAdding.exists?(:email).should be_true
       TestAdding.exists?(:non_existent).should be_false
+    end
+    it "should be able to determine if the method is missing" do
+      TestAdding.missing?(:non_existent).should be_true
+      TestAdding.missing?(:email).should be_false
     end
   end
 end

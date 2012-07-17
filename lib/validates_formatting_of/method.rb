@@ -3,8 +3,6 @@ require 'validates_formatting_of/validation_addition'
 
 module ValidatesFormattingOf
 
-  class MissingValidation < StandardError; end
-
   module Method
 
     extend ValidationAddition
