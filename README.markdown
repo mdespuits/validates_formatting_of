@@ -121,7 +121,7 @@ end
 class Location < ActiveRecord::Base
   # :ip_address used to be the IP validation method. This was dropped
   # in favor of the following for future IPv6 validation.
-  validates_formatting_of :website, :using => :ip_address_v4
+  validates_formatting_of :ip, :using => :ip_address_v4
 end
 ```
 
