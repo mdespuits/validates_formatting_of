@@ -149,13 +149,13 @@ class Invoice < ActiveRecord::Base
 end
 ```
 
-# Customizable
+# Over-writable
 
-If, for any reason, you want to use your own regex instead of Rail's built-in methods, you can specify what you want to use with the `:regex` option. For example,
+If, for any reason, you want to overwrite the regex specified in the gem, you can using the `:with` options just like in ActiveModel's built-in `validates_format_of`.
 
 ```ruby
 class Person < ActiveRecord::Base
-  validates_formatting_of :first_name, :regex => /[A-Z]/i
+  validates_formatting_of :first_name, :with => /[A-Z]/i
 end
 ```
 
