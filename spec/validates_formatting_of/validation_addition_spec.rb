@@ -34,6 +34,10 @@ module ValidatesFormattingOf
       TestAdding.exists?(:email).should be_true
       TestAdding.exists?(:non_existent).should be_false
     end
+    it "should be able to accept strings for validation names (for namespacing)" do
+      TestAdding.add "namespace:phone", /namespace/i
+      TestAdding.exists?("namespace:phone").should be_true
+    end
     it "should be able to determine if the method is missing" do
       TestAdding.missing?(:non_existent).should be_true
       TestAdding.missing?(:email).should be_false
