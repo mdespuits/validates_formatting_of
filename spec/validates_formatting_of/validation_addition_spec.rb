@@ -10,6 +10,9 @@ module ValidatesFormattingOf
     before do
       TestAdding.add :email, /email/i
     end
+    after do
+      TestAdding.instance_variable_set("@validations", nil)
+    end
     it "should be able to add new validations" do
       TestAdding.add :another, /another/i
       TestAdding.validations.count.should == 2
