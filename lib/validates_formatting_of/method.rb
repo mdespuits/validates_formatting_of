@@ -41,7 +41,6 @@ module ValidatesFormattingOf
     add :us_phone, %r{\A(\((\d{3})\)|\d{3})[ |\.|\-]?(\d{3})[ |\.|\-]?(\d{4})\Z}, "is not a valid phone number"
 
     # IP Address validation
-    add :ip_address, %r{\A(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\Z}, "is not a valid IPv4 address"
     add :ip_address_v4, %r{\A(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\Z}, "is not a valid IPv4 address"
 
     # Social Security Number pattern

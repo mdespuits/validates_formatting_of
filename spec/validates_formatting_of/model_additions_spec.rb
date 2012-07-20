@@ -109,33 +109,18 @@ describe ValidatesFormattingOf::ModelAdditions do
     end
   end
 
-  describe "ip_address" do
-    class IPAddress < TestActiveRecord
-      attr_accessor :ip
-      validates_formatting_of :ip, :using => :ip_address
-    end
-    it "validates that the IP address provided is valid" do
-      IPAddress.new(:ip => '10.10.10').should_not be_valid
-      IPAddress.new(:ip => '999.10.10.20').should_not be_valid
-      IPAddress.new(:ip => '2222.22.22.22').should_not be_valid
-      IPAddress.new(:ip => '22.2222.22.2').should_not be_valid
-      IPAddress.new(:ip => '127.0.0.1').should be_valid
-      IPAddress.new(:ip => '132.254.111.10').should be_valid
-    end
-  end
-
   describe "ip_address_v4" do
-    class IPAddress2 < TestActiveRecord
+    class IPAddress < TestActiveRecord
       attr_accessor :ipv4
       validates_formatting_of :ipv4, :using => :ip_address_v4
     end
     it "validates that the IP address provided is valid" do
-      IPAddress2.new(:ipv4 => '10.10.10').should_not be_valid
-      IPAddress2.new(:ipv4 => '999.10.10.20').should_not be_valid
-      IPAddress2.new(:ipv4 => '2222.22.22.22').should_not be_valid
-      IPAddress2.new(:ipv4 => '22.2222.22.2').should_not be_valid
-      IPAddress2.new(:ipv4 => '127.0.0.1').should be_valid
-      IPAddress2.new(:ipv4 => '132.254.111.10').should be_valid
+      IPAddress.new(:ipv4 => '10.10.10').should_not be_valid
+      IPAddress.new(:ipv4 => '999.10.10.20').should_not be_valid
+      IPAddress.new(:ipv4 => '2222.22.22.22').should_not be_valid
+      IPAddress.new(:ipv4 => '22.2222.22.2').should_not be_valid
+      IPAddress.new(:ipv4 => '127.0.0.1').should be_valid
+      IPAddress.new(:ipv4 => '132.254.111.10').should be_valid
     end
   end
 
