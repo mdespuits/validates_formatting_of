@@ -1,5 +1,7 @@
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start do
+  load_adapter 'test_frameworks'
+end
 
 require 'validates_formatting_of'
 require 'active_model'
