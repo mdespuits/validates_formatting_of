@@ -1,6 +1,9 @@
 require 'simplecov'
-SimpleCov.start do
-  load_adapter 'test_frameworks'
+
+unless ENV["SKIP_SIMPLECOV"] == 'true'
+  SimpleCov.start do
+    load_adapter 'test_frameworks'
+  end
 end
 
 require 'validates_formatting_of'

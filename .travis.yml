@@ -1,3 +1,4 @@
+script: SKIP_SIMPLECOV=true bundle exec rspec spec
 rvm:
   - 1.9.2
   - 1.9.3
