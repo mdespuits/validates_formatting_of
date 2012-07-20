@@ -1,3 +1,13 @@
+## v0.7.0
+
+* Removed :ip_address validation method
+* Bug fix for :simple_email validation. Identical to :email validation.
+
+There were a few changes between v0.5.0 and v0.7.0, however I neglected to updated them here. They are as follows:
+
+* Refactored entire gem for better testing
+* Deprecating and then removing :ip_address validation in favor of :ip_address_v4 validation.
+
 ## v0.5.0
 * Dropped support for Ruby 1.8.7
 * Dropped support for REE

@@ -67,6 +67,14 @@ class User < ActiveRecord::Base
 end
 ```
 
+**Note**: If you use `client_side_validations` then you need to use the following validation method:
+
+```ruby
+class User < ActiveRecord::Base
+  validates_formatting_of :email, :using => :simple_email
+end
+```
+
 ### URL
 
 ```ruby
@@ -115,12 +123,10 @@ class Phones < ActiveRecord::Base
 end
 ```
 
-### IP Address
+### IPv4
 
 ```ruby
 class Location < ActiveRecord::Base
-  # :ip_address used to be the IP validation method. This was dropped
-  # in favor of the following for future IPv6 validation.
   validates_formatting_of :ip, :using => :ip_address_v4
 end
 ```
