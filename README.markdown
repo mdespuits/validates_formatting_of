@@ -55,14 +55,36 @@ You can still add the following options when using `validates_formatting_of`:
 * `:unless`
 * You can also specify the `:message` option to use a custom validation message.
 
-# Available Formatting Validations
+# Share your Validations
 
-`validates_formatting_of` has support for the following validations:
+Say, for example, you have identical plain-old regex validations for different columns or even on different models entirely. You can easily alleviate this problem by simply adding the validation(s) in an initializer file.
+
+While very unrealistic, these examples should serve their purpose in demonstrating this ability.
+
+```ruby
+# config/initializers/validates_foramatting_of.rb
+ValidatesFormattingOf::Method.add :loweralpha, /[a-z]/, "must be lowercase and no spaces"
+ValidatesFormattingOf::Method.add :upperalpha, /[A-Z]/, "must be uppercase and no spaces"
+ValidatesFormattingOf::Method.add :weak_password, /[a-zA-Z0-9]{8,}/, "must contain only letters and numbers and be at least 8 characters long".
+```
+
+Keep in mind, since this gem is only ActiveModel-dependent, you should be able to do this in whatever non-Rails application classes you have that include `ActiveModel::Validations` in some way (and that extend the `ValidatesFormattingOf::ModelAdditons` module).
+
+# Built-in Validations
+
+`validates_formatting_of` has the following build-in validations:
 
 ### Email
 
 ```ruby
-class User < ActiveRecord::Base
+# non ActiveRecord::Base example. This is the least you need to get validations running.
+class User
+
+  include ActiveModel::Validations
+  extend ValidatesFormattingOf::ModelAdditions
+
+  attr_accessor :email
+
   validates_formatting_of :email, :using => :email
 end
 ```
