@@ -1,6 +1,6 @@
 require 'simplecov'
 
-unless ENV["SKIP_SIMPLECOV"] == 'true'
+if ENV["RUN_SIMPLECOV"] == 'true'
   SimpleCov.start do
     load_adapter 'test_frameworks'
   end
