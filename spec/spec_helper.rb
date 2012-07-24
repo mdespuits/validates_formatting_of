@@ -10,9 +10,8 @@ require 'validates_formatting_of'
 require 'active_model'
 
 class TestActiveRecord
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
 
+  include ActiveModel::Validations
   extend ValidatesFormattingOf::ModelAdditions
 
   def initialize(attributes = {})
