@@ -19,9 +19,6 @@ module ValidatesFormattingOf
     def find(attribute, opts = {})
       method = opts.fetch(:using, attribute)
       raise MissingValidation.new(method) if missing? method
-      if method.to_sym == :ip_address
-        raise ArgumentError, "[REMOVED] The :ip_address validation for `validates_formatting_of` has been removed since version 0.7.0. Please update your model validations to use :ip_address_v4."
-      end
       @validations[method.to_sym]
     end
 
