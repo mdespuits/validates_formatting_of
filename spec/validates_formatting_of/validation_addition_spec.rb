@@ -4,14 +4,15 @@ module ValidatesFormattingOf
 
   class TestAdding
     extend ValidationAddition
+    def self.clear!
+      @validations = nil
+    end
   end
 
   describe ValidationAddition do
     before do
+      TestAdding.clear!
       TestAdding.add :email, /email/i
-    end
-    after do
-      TestAdding.instance_variable_set("@validations", nil)
     end
     it "should be able to add new validations" do
       TestAdding.add :another, /another/i
