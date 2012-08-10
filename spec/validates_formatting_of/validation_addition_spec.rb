@@ -19,13 +19,17 @@ module ValidatesFormattingOf
       TestAdding.validations[:email].should be_instance_of Validation
       TestAdding.validations[:another].should be_instance_of Validation
     end
-    it "should be able to smartly determine the method to use" do
-      validation = TestAdding.find(:email)
-      validation.name.should == :email
-      validation.regex.should == /email/i
-      validation = TestAdding.find(:non_existent_validation, :using => :email)
-      validation.name.should == :email
-      validation.regex.should == /email/i
+    describe "find" do
+      context "implicit validation method" do
+        subject { TestAdding.find(:email) }
+        its(:name) { should == :email }
+        its(:regex) { should == /email/i }
+      end
+      context "explicit validation method" do
+        subject { TestAdding.find(:non_existent_validation, :using => :email) }
+        its(:name)  { should == :email   }
+        its(:regex) { should == /email/i }
+      end
     end
     it "should raise an error if the method does not exist" do
       expect { TestAdding.find(:fake) }.to raise_error MissingValidation
