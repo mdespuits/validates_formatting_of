@@ -189,12 +189,12 @@ end
 
 # Development and Contribution
 
-To add a simple regex validation, all that is necessary is to add a single line to the `Method` module in the `lib/method.rb` file (with a line or two of documentation explaining it's use).
+To add a simple regex validation, all that is necessary is to add a single line to the `ValidatesFormattingOf::Method` module in the `lib/method.rb` file (with a line or two of documentation explaining it's use).
 
 For example:
 
 ```ruby
-module Method
+module ValidatesFormattingOf::Method
   # This :validation_name method is for example purposes only.
   # You can use this in production, but it would require a value of 'example regex' to pass.
   add :validation_name, %r{example regex}iux, "is a message for validation method :validation_name"
