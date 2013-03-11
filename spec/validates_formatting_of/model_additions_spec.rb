@@ -18,6 +18,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       Email.new(:email => "info@-samoa.travel").should_not be_valid
       Email.new(:email => "info@samoa-.travel").should_not be_valid
       Email.new(:email => "info@123-samoa.travel").should be_valid
+      Email.new(:email => "info@123-samoa.travel\n").should_not be_valid
     end
   end
 
@@ -27,16 +28,17 @@ describe ValidatesFormattingOf::ModelAdditions do
       validates_formatting_of :email, :using => :simple_email
     end
     it "validates that the email provided is valid" do
-      Email.new(:email => "example@example.com").should be_valid
-      Email.new(:email => "badexample.com").should_not be_valid
-      Email.new(:email => "mbridges.91@gmail.com").should be_valid
-      Email.new(:email => "some-random%%%strangely-formatted-email@lots.of.subdomains.com").should be_valid
-      Email.new(:email => "this__???{}|__should@be-valid.com").should be_valid
-      Email.new(:email => "visitorservices@vmfa.museum").should be_valid
-      Email.new(:email => "info@samoa.travel").should be_valid
-      Email.new(:email => "info@-samoa.travel").should_not be_valid
-      Email.new(:email => "info@samoa-.travel").should_not be_valid
-      Email.new(:email => "info@123-samoa.travel").should be_valid
+      SimpleEmail.new(:email => "example@example.com").should be_valid
+      SimpleEmail.new(:email => "badexample.com").should_not be_valid
+      SimpleEmail.new(:email => "mbridges.91@gmail.com").should be_valid
+      SimpleEmail.new(:email => "some-random%%%strangely-formatted-email@lots.of.subdomains.com").should be_valid
+      SimpleEmail.new(:email => "this__???{}|__should@be-valid.com").should be_valid
+      SimpleEmail.new(:email => "visitorservices@vmfa.museum").should be_valid
+      SimpleEmail.new(:email => "info@samoa.travel").should be_valid
+      SimpleEmail.new(:email => "info@-samoa.travel").should be_valid
+      SimpleEmail.new(:email => "info@samoa-.travel").should be_valid
+      SimpleEmail.new(:email => "info@123-samoa.travel").should be_valid
+      SimpleEmail.new(:email => "info@123-samoa.travel\n").should_not be_valid
     end
   end
   describe "url" do
@@ -49,6 +51,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       Webpage.new(:url => 'http://something-else.com').should be_valid
       Webpage.new(:url => 'http://sub.domains.something-else.com').should be_valid
       Webpage.new(:url => 'http://username:password@something-else.com').should be_valid
+      Webpage.new(:url => "http://username:password@something-else.com\n").should_not be_valid
       Webpage.new(:url => "something else").should_not be_valid
     end
   end
@@ -61,6 +64,7 @@ describe ValidatesFormattingOf::ModelAdditions do
     it "validates that the zipcode provided is valid" do
       USZip.new(:zipcode => '92348').should be_valid
       USZip.new(:zipcode => '23434-2348').should be_valid
+      USZip.new(:zipcode => "23434-2348\n").should_not be_valid
       USZip.new(:zipcode => '234').should_not be_valid
       USZip.new(:zipcode => '23408234').should_not be_valid
       USZip.new(:zipcode => 'invalid').should_not be_valid
@@ -104,6 +108,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       USPhone.new(:phone_number => '1231233456').should be_valid
       USPhone.new(:phone_number => '123.123.3456').should be_valid
       USPhone.new(:phone_number => '(223)123-2347').should be_valid
+      USPhone.new(:phone_number => "(223)123-2347\n").should_not be_valid
       USPhone.new(:phone_number => '(223 123-2347').should_not be_valid
       USPhone.new(:phone_number => '12349870238').should_not be_valid
     end
@@ -121,6 +126,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       IPAddress.new(:ipv4 => '22.2222.22.2').should_not be_valid
       IPAddress.new(:ipv4 => '127.0.0.1').should be_valid
       IPAddress.new(:ipv4 => '132.254.111.10').should be_valid
+      IPAddress.new(:ipv4 => "132.254.111.10\n").should_not be_valid
     end
   end
 
@@ -135,6 +141,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       Client.new(:cc => '4264-2879-1230-0000').should be_valid # Visa style
       Client.new(:cc => '6011-1111-0000-2391').should be_valid # Discover style
       Client.new(:cc => '5422434400828888').should be_valid # Mastercard style
+      Client.new(:cc => "5422434400828889\n").should_not be_valid # Mastercard style
       Client.new(:cc => '1233444444444444').should_not be_valid # fake
     end
   end
@@ -148,6 +155,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       AnotherPerson.new(:ssn => "145.47.0191").should be_valid
       AnotherPerson.new(:ssn => "223-43-2343").should be_valid
       AnotherPerson.new(:ssn => "999.55.8888").should be_valid
+      AnotherPerson.new(:ssn => "999.55.8888\n").should_not be_valid
       AnotherPerson.new(:ssn => "28934").should_not be_valid
       AnotherPerson.new(:ssn => "228934828934934").should_not be_valid
       AnotherPerson.new(:ssn => "23498.7234").should_not be_valid
@@ -165,6 +173,7 @@ describe ValidatesFormattingOf::ModelAdditions do
       Color.new(:color => "000011").should be_valid
       Color.new(:color => "132").should be_valid
       Color.new(:color => "eef").should be_valid
+      Color.new(:color => "eef\n").should_not be_valid
       Color.new(:color => "efefe").should_not be_valid
       Color.new(:color => "zsdfsd").should_not be_valid
       Color.new(:color => "p98hul;").should_not be_valid
