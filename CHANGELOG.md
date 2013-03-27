@@ -1,3 +1,11 @@
+## v0.7.2
+
+* Bugfix: Changed \Z to \z anchor and added some test assertions. Not valid with newline in some formats
+
+## v0.7.1
+
+* Removed :ip_address ArgumentError. Already fails since it is missing
+
 ## v0.7.0
 
 * Removed :ip_address validation method
