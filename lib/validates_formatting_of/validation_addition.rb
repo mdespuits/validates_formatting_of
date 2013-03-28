@@ -13,13 +13,13 @@ module ValidatesFormattingOf
 
     def add(name, regex, message = nil)
       @validations ||= {}
-      @validations[name.to_sym] = Validation.new(name.to_sym, regex, message)
+      @validations[name.to_s] = Validation.new(name.to_sym, regex, message)
     end
 
     def find(attribute, opts = {})
       method = opts.fetch(:using, attribute)
       raise MissingValidation.new(method) if missing? method
-      @validations[method.to_sym]
+      @validations[method.to_s]
     end
 
     def missing?(name)
@@ -27,7 +27,7 @@ module ValidatesFormattingOf
     end
 
     def exists?(name)
-      @validations[name.to_sym].present?
+      @validations[name.to_s].present?
     end
   end
 end

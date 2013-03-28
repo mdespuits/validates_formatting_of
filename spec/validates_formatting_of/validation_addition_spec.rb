@@ -17,8 +17,8 @@ module ValidatesFormattingOf
     it "should be able to add new validations" do
       TestAdding.add :another, /another/i
       TestAdding.validations.count.should == 2
-      TestAdding.validations[:email].should be_instance_of Validation
-      TestAdding.validations[:another].should be_instance_of Validation
+      TestAdding.validations['email'].should be_instance_of Validation
+      TestAdding.validations['another'].should be_instance_of Validation
     end
     describe "find" do
       context "implicit validation method" do
