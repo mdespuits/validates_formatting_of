@@ -1,6 +1,6 @@
 ## v0.8.0
 
-* Added Rails 'sexy' validation.
+* Added Rails 'sexy' validation. *hbakhiyor*
 
 ```ruby
 class User < ActiveRecord::Base
@@ -8,11 +8,9 @@ class User < ActiveRecord::Base
 end
 ```
 
-  *hbakhiyor*
-
 ## v0.7.2
 
-* Bugfix: Changed \Z to \z anchor and added some test assertions. Not valid with newline in some formats
+* Bugfix: Changed \Z to \z anchor and added some test assertions. Not valid with newline in some formats *hbakhiyor*
 
 ## v0.7.1
 
