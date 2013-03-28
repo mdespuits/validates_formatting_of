@@ -12,6 +12,7 @@ require 'active_model'
 class TestActiveRecord
 
   include ActiveModel::Validations
+  include ValidatesFormattingOf::Validations
   extend ValidatesFormattingOf::ModelAdditions
 
   def initialize(attributes = {})
