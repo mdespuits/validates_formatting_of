@@ -1,5 +1,9 @@
 require 'active_support/core_ext/hash/reverse_merge'
+require 'active_support/core_ext/string'
+require 'active_support/concern'
+require 'active_model/validator'
 require 'active_model/validations'
+
 
 module ValidatesFormattingOf
   module Validations
