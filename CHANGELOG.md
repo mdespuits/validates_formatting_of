@@ -1,3 +1,7 @@
+## v0.8.1
+
+* Support Rails 4
+
 ## v0.8.0
 
 * Added Rails 'sexy' validation. *hbakhiyor*
