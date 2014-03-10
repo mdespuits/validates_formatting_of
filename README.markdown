@@ -72,18 +72,21 @@ Keep in mind, since this gem is only ActiveModel-dependent, you should be able t
 
 `validates_formatting_of` has the following build-in validations:
 
-### Email
-
 ```ruby
-# non ActiveRecord::Base example. This is the least you need to get validations running.
-class User
+class ExampleModel < ActiveRecord::Base
+  validates_formatting_of :email, :using => :email      # Email
+  validates_formatting_of :first_name, :using => :alpha # Letters
+  validates_formatting_of :website, :using => :url      # URLs
+  validates_formatting_of :text, :using => :alphanum    # Alpha-numeric
+  validates_formatting_of :zipcode, :using => :us_zip   # US Zip Code
+  validates_formatting_of :phone, :using => :us_phone   # US Phone Numbers
+  validates_formatting_of :ip, :using => :ip_address_v4 # IPv4
+  validates_formatting_of :ssn, :using => :ssn          # Social Security Numbers
+  validates_formatting_of :color, :using => :hex_color  # Hexadecimal Colors
+  validates_formatting_of :amount, :using => :dollars   # Dollars
 
-  include ActiveModel::Validations
-  extend ValidatesFormattingOf::ModelAdditions
-
-  attr_accessor :email
-
-  validates_formatting_of :email, :using => :email
+  # Credit Card (Visa, Mastercard, Discover, and American Express)
+  validates_formatting_of :cc, :using => :credit_card
 end
 ```
 
@@ -95,83 +98,18 @@ class User < ActiveRecord::Base
 end
 ```
 
-### URL
+### Plain Old Ruby Objects
+
+If you are not using ActiveRecord or want to use it on some other type of object, this is the least you need to get validations running.
 
 ```ruby
-class Sites < ActiveRecord::Base
-  validates_formatting_of :website, :using => :url
-end
-```
+class User
+  include ActiveModel::Validations
+  extend ValidatesFormattingOf::ModelAdditions
 
-### Alpha
+  attr_accessor :email
 
-```ruby
-class Name < ActiveRecord::Base
-  validates_formatting_of :first_name, :using => :alpha
-end
-```
-
-### Alphanumeric
-
-```ruby
-class Sites < ActiveRecord::Base
-  validates_formatting_of :text, :using => :alphanum
-end
-```
-
-### Credit Card (Visa, Mastercard, Discover, and American Express)
-
-```ruby
-class Purchases < ActiveRecord::Base
-  validates_formatting_of :cc, :using => :credit_card
-end
-```
-
-### US Zipcodes
-
-```ruby
-class Location < ActiveRecord::Base
-  validates_formatting_of :zipcode, :using => :us_zip
-end
-```
-
-### US Phone numbers
-
-```ruby
-class Phones < ActiveRecord::Base
-  validates_formatting_of :phone, :using => :us_phone
-end
-```
-
-### IPv4
-
-```ruby
-class Location < ActiveRecord::Base
-  validates_formatting_of :ip, :using => :ip_address_v4
-end
-```
-
-### Social Security Number
-
-```ruby
-class User < ActiveRecord::Base
-  validates_formatting_of :ssn, :using => :ssn
-end
-```
-
-### Hex Colors
-
-```ruby
-class Color < ActiveRecord::Base
-  validates_formatting_of :color, :using => :hex_color
-end
-```
-
-### Dollar Amount
-
-```ruby
-class Invoice < ActiveRecord::Base
-  validates_formatting_of :amount, :using => :dollars
+  validates_formatting_of :email, :using => :email
 end
 ```
 
