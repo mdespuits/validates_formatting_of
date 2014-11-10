@@ -60,7 +60,7 @@ Say, for example, you have identical plain-old regex validations for different c
 While very unrealistic, these examples should serve their purpose in demonstrating this ability.
 
 ```ruby
-# config/initializers/validates_foramatting_of.rb
+# config/initializers/validates_formatting_of.rb
 ValidatesFormattingOf::Method.add :loweralpha, /[a-z]/, "must be lowercase and no spaces"
 ValidatesFormattingOf::Method.add :upperalpha, /[A-Z]/, "must be uppercase and no spaces"
 ValidatesFormattingOf::Method.add :weak_password, /[a-zA-Z0-9]{8,}/, "must contain only letters and numbers and be at least 8 characters long".
