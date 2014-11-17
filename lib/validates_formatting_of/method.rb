@@ -18,7 +18,7 @@ module ValidatesFormattingOf
     # (slightly revised to work on MRI 1.8.7 and ree)
     add :url, %r{\Ahttps?:\/\/([^\s:@]+:[^\s:@]*@)?[A-Za-z\d\-]+(\.[A-Za-z\d\-]+)+\.?(:\d{1,5})?([\/?]\S*)?\z}i, "is not a valid URL"
 
-    # No numbers of symbols. allows "-"
+    # No numbers or symbols. allows "-"
     add :alpha, %r{\A([^\d\W]|[-])*\Z}, "must be only letters or dashes"
 
     # Letters, numbers, and spaces
