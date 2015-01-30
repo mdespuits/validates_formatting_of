@@ -70,7 +70,7 @@ Keep in mind, since this gem is only ActiveModel-dependent, you should be able t
 
 # Built-in Validations
 
-`validates_formatting_of` has the following build-in validations:
+`validates_formatting_of` has the following built-in validations:
 
 ```ruby
 class ExampleModel < ActiveRecord::Base
