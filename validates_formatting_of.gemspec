@@ -15,9 +15,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ValidatesFormattingOf::VERSION
 
-  gem.add_dependency "activemodel", "~> 4.0"
+  gem.add_dependency "activemodel"
 
   gem.add_development_dependency "rake"
   gem.add_development_dependency "rspec"
   gem.add_development_dependency "simplecov"
+  gem.add_development_dependency "its"
 end

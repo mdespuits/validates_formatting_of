@@ -1,4 +1,5 @@
 require 'validates_formatting_of/validation'
+require 'its'
 
 module ValidatesFormattingOf
 
@@ -6,13 +7,13 @@ module ValidatesFormattingOf
     context "valid validation creation" do
       let(:validation) { Validation.new(:name, /something/i, "is an invalid value") }
       subject { validation }
-      its(:name) { should == :name }
-      its(:regex) { should == %r{something}i }
-      its(:message) { should == 'is an invalid value' }
-      its(:to_s) { should == "<Validation::name>" }
-      its(:inspect) { should =~ /Validation/ }
-      its(:inspect) { should =~ /\/something\/i/ }
-      its(:inspect) { should =~ /\:name/ }
+      its(:name) { is_expected.to eq(:name) }
+      its(:regex) { is_expected.to eq(%r{something}i) }
+      its(:message) { is_expected.to eq('is an invalid value') }
+      its(:to_s) { is_expected.to eq("<Validation::name>") }
+      its(:inspect) { is_expected.to match(/Validation/) }
+      its(:inspect) { is_expected.to match(/\/something\/i/) }
+      its(:inspect) { is_expected.to match(/\:name/) }
     end
     context "invalid validation creation" do
       it "should raise an error if the specified regex is not a Regexp objct" do

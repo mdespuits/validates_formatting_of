@@ -1,4 +1,5 @@
 require 'validates_formatting_of/validation_addition'
+require 'its'
 
 module ValidatesFormattingOf
 
@@ -16,36 +17,36 @@ module ValidatesFormattingOf
     end
     it "should be able to add new validations" do
       TestAdding.add :another, /another/i
-      TestAdding.validations.count.should == 2
-      TestAdding.validations['email'].should be_instance_of Validation
-      TestAdding.validations['another'].should be_instance_of Validation
+      expect(TestAdding.validations.count).to eq(2)
+      expect(TestAdding.validations['email']).to be_instance_of Validation
+      expect(TestAdding.validations['another']).to be_instance_of Validation
     end
     describe "find" do
       context "implicit validation method" do
         subject { TestAdding.find(:email) }
-        its(:name) { should == :email }
-        its(:regex) { should == /email/i }
+        its(:name) { is_expected.to eq(:email) }
+        its(:regex) { is_expected.to eq(/email/i) }
       end
       context "explicit validation method" do
         subject { TestAdding.find(:non_existent_validation, :using => :email) }
-        its(:name)  { should == :email   }
-        its(:regex) { should == /email/i }
+        its(:name)  { is_expected.to eq(:email)   }
+        its(:regex) { is_expected.to eq(/email/i) }
       end
     end
     it "should raise an error if the method does not exist" do
       expect { TestAdding.find(:fake) }.to raise_error MissingValidation
     end
     it "should be able to determine if the method does not exist" do
-      TestAdding.exists?(:email).should be_true
-      TestAdding.exists?(:non_existent).should be_false
+      expect(TestAdding.exists?(:email)).to be_truthy
+      expect(TestAdding.exists?(:non_existent)).to be_falsey
     end
     it "should be able to accept strings for validation names (for namespacing)" do
       TestAdding.add "namespace:phone", /namespace/i
-      TestAdding.exists?("namespace:phone").should be_true
+      expect(TestAdding.exists?("namespace:phone")).to be_truthy
     end
     it "should be able to determine if the method is missing" do
-      TestAdding.missing?(:non_existent).should be_true
-      TestAdding.missing?(:email).should be_false
+      expect(TestAdding.missing?(:non_existent)).to be_truthy
+      expect(TestAdding.missing?(:email)).to be_falsey
     end
   end
 end
