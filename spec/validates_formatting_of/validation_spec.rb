@@ -3,7 +3,7 @@ require 'its'
 
 module ValidatesFormattingOf
 
-  describe Validation do
+  RSpec.describe Validation do
     context "valid validation creation" do
       let(:validation) { Validation.new(:name, /something/i, "is an invalid value") }
       subject { validation }

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ValidatesFormattingOf::Validations do
+RSpec.describe ValidatesFormattingOf::Validations do
 
   describe "with 'sexy' validation style" do
     describe "email" do

@@ -6,6 +6,10 @@ if ENV["RUN_SIMPLECOV"] == 'true'
   end
 end
 
+RSpec.configure do |config|
+  config.disable_monkey_patching!
+end
+
 require 'validates_formatting_of'
 require 'active_model'
 

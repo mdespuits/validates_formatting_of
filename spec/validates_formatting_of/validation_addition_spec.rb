@@ -10,7 +10,7 @@ module ValidatesFormattingOf
     end
   end
 
-  describe ValidationAddition do
+  RSpec.describe ValidationAddition do
     before do
       TestAdding.clear!
       TestAdding.add :email, /email/i

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ValidatesFormattingOf::ModelAdditions do
+RSpec.describe ValidatesFormattingOf::ModelAdditions do
 
   describe "email" do
     class Email < TestActiveRecord
