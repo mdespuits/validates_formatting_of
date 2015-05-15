@@ -11,6 +11,7 @@ The `validates_formatting_of` gem adds several convenient methods to validate th
 * 1.9.3
 * 2.0.0
 * 2.1.0
+* 2.2.0
 
 # Installation
 
